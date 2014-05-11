@@ -1,6 +1,7 @@
-== PlantFactory Supervisior 
+# PlantFactory Supervisior 
 
 Require
- *SWOT
- *local Gateway
- *arduino sensor Network
+ 
+* SWOT
+* local Gateway
+* arduino sensor Network
