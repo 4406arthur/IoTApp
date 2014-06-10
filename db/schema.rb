@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607135130) do
+ActiveRecord::Schema.define(version: 20140610205505) do
+
+  create_table "devices", force: true do |t|
+    t.integer  "device_id"
+    t.integer  "swot_user_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", force: true do |t|
     t.string   "content"
@@ -24,7 +32,8 @@ ActiveRecord::Schema.define(version: 20140607135130) do
 
   create_table "swot_users", force: true do |t|
     t.integer  "fb_id"
-    t.integer  "gateway_id"
+    t.integer  "gw_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
