@@ -1,8 +1,9 @@
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<% provide(:title, 'Subscription') %>
+<h1>Choose device you want to use.</h1>
 
 <div class="row">
-  <div class="span6 offset3">
+  
+  <% if false%>
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :name %>
@@ -19,5 +20,39 @@
       <br></br>
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
-  </div>
+  <% end %>
+  <div id="items"> </div>
+  <script>
+           $(function () {
+            $.ajax({
+                url: "http://140.138.150.52/task_manager/v2/list",
+                data: {
+                        service_id: 60, 
+                        service_secret: "a98fa6a13fe2ba98c28fa52dabcd9acd",
+                        gwid: 1,                
+                       },
+                type:  "POST",
+                dataType: "JSON",
+               }).done(function(rep) {
+               var item = rep.devices;
+                 for (var i in item ){
+                    $('#items').append('<div class="panel panel-info  col-md-4">'+item[i].device_name+'<br>'
+                      + '<button device-id="'+ item[i].shg_device_id  +'"  type="button" class="btn btn-primary submit-device">'+ "submit" +'</button></div>');
+                 }
+               })
+           });
+
+           $('#items').on('click', '.submit-device', function (e) {
+              e.preventDefault();
+
+              var $thisBtn = $(this),
+                  $thisDeviceId = $thisBtn.data('device-id');
+
+                  $thisBtn.closest("div[class^='panel']").remove();
+
+           });
+
+
+
+  </script>
 </div>

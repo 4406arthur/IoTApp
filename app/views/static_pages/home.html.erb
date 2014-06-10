@@ -1,6 +1,7 @@
 <% if signed_in? %>
+  <br><br><br><br><br>
   <div class="row">
-    <aside class="span4">
+    <aside class="col-md-4">
       <section>
         <%= render 'shared/user_info' %>
       </section>
@@ -8,13 +9,13 @@
         <%= render 'shared/micropost_form' %>
       </section>
     </aside>
-    <div class="span8">
+    <div class="col-md-8">
       <h3>Micropost Feed</h3>
       <%= render 'shared/feed' %>
     </div>
   </div>
 <% else %>
-  <div class="center hero-unit">
+  <div class="center lead">
     <h1>Welcome to here, Since you did't register our plantFactory Web service!</h1>
 
     <br></br>
@@ -22,7 +23,7 @@
       below is the subcription page 
     </h2>
     <%= link_to "Subcribe now!", signup_path,
-                                class: "btn btn-large btn-primary" %>
+                                class: "btn btn-primary btn-lg" %>
   </div>
 
 

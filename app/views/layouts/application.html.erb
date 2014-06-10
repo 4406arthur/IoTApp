@@ -11,22 +11,9 @@
 <![endif]-->
 </head>
 <body>
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-	<div class="container">
-	<%= link_to "PlantFactory", 'http://127.0.0.1:3000/', id: "logo" %>
-		<nav>
-			<ul class="nav pull-right">
-				<li><%= link_to "Home",    '#' %></li>
-				<li><%= link_to "Help",    '#' %></li>
-				<li><%= link_to "Sign in", '#signin' %></li>
-			</ul>
-		</nav>
-	</div>
-  </div>
-</header>
+<!--header class="navbar navbar-inverse"> </header-->
   <%= render 'layouts/header' %>
-    <div class="container">
+    <div class="container-fluid">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
