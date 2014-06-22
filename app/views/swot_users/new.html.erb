@@ -2,25 +2,6 @@
 <h1>Choose device you want to use.</h1>
 
 <div class="row">
-  
-  <% if false%>
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
-      <br></br>
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-    <% end %>
-  <% end %>
   <div id="items"> </div>
   <script>
            $(function () {
@@ -37,7 +18,7 @@
                var item = rep.devices;
                  for (var i in item ){
                     $('#items').append('<div class = "col-md-4"><div class="panel panel-success well well-lg">'+item[i].device_name+'<br>'
-                      + '<button device-id="'+ item[i].shg_device_id  +'"  type="button" class="btn btn-primary submit-device">'+ "submit" +'</button></div></div>');
+                      + '<button data-device-id='+ item[i].shg_device_id  +' data-device-name='+ item[i].device_name +' type="button" class="btn btn-primary submit-device">'+ "submit" +'</button></div></div>');
                  }
                })
            });
@@ -46,7 +27,8 @@
               e.preventDefault();
 
               var $thisBtn = $(this),
-                  $thisDeviceId = $thisBtn.data('device-id');
+                  $thisDeviceId = $thisBtn.data("device-id"),
+                  $thisDeviceName = $thisBtn.data("device-name");
                   console.log($thisDeviceId);
                   $.ajax({
                   url: "http://140.138.150.52/task_manager/v2/subscribe",
@@ -60,13 +42,14 @@
                   type:  "POST",
                   dataType: "JSON",
                   }).done(function(rep) {
-                    
                     $thisBtn.closest("div[class^='panel']").remove();
-                  
+                    $.ajax({
+                    url: "http://140.138.150.57:3000/creation?dev_id="+$thisDeviceId+"&name="+$thisDeviceName,
+                   
+                    type: "get",
+                    datatype: "text/plain",
+                    })                
            });
           })
-
-
-
   </script>
 </div>

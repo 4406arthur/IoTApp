@@ -1,4 +1,4 @@
-<% if signed_in? %>
+<% if swot_signed_in? %>
   <br><br><br><br><br>
   <div class="row">
     <aside class="col-md-4">
@@ -6,7 +6,7 @@
         <%= render 'shared/user_info' %>
       </section>
       <section>
-        <%= render 'shared/micropost_form' %>
+        <%= render 'shared/suggestion_form' %>
       </section>
     </aside>
     <div class="col-md-8">
@@ -17,7 +17,6 @@
 <% else %>
   <div class="center lead">
     <h1>Welcome to here, Since you did't register our plantFactory Web service!</h1>
-
     <br></br>
     <h2>
       below is the subcription page 

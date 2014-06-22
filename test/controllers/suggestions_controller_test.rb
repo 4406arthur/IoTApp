@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SwotUserTest < ActiveSupport::TestCase
+class SuggestionsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,3 +1,4 @@
 class Device < ActiveRecord::Base
-   belong_to :swot_user
+  belongs_to :swot_user
+  set_primary_key :device_id
 end

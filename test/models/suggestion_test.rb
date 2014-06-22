@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SwotUserTest < ActiveSupport::TestCase
+class SuggestionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

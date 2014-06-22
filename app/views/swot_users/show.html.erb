@@ -1,0 +1,26 @@
+<% provide(:title, @user.name) %>
+<br><br><br>
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <h1>
+        <%= swot_gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.suggestions.any? %>
+      <h3>Suggestions (<%= @user.suggestions.count %>)</h3>
+      <ol class="microposts">
+        <%#=# render @suggestions %>
+      </ol>
+      <%= will_paginate @suggestions %>
+    <% end %>
+    <% if swot_signed_in? %>
+       <p> <%= @swot_current_user.name  %>
+    <% else %>
+       <p> Error
+    <% end %>
+  </div>
+</div>

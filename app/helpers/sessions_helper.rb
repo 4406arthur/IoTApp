@@ -10,7 +10,6 @@ module SessionsHelper
     !current_user.nil?
   end
 
-
   def current_user=(user)
     @current_user = user
   end
@@ -24,13 +23,13 @@ module SessionsHelper
     user == current_user
   end
 
+
   def signed_in_user
     unless signed_in?
       store_location
       redirect_to signin_url, notice: "Please sign in."
     end
   end
-
 
   def sign_out
     current_user.update_attribute(:remember_token,
