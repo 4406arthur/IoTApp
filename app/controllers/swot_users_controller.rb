@@ -1,6 +1,6 @@
 class SwotUsersController < ApplicationController
   before_action :swot_signed_in_user, only:[:index]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :swot_correct_user,   only: [:edit, :update]
   
   def check
     user = SwotUser.find_by(fb_id: params[:fb_id] )
@@ -79,8 +79,7 @@ class SwotUsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+      params.require(:swot_user).permit(:name )
     end
     # Before filters
 

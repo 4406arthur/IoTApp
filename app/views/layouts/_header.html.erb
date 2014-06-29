@@ -6,22 +6,20 @@
           <li><%= link_to  "Home", root_path,style: 'color:#FFFFFF;'%></li>
           <li><%= link_to "Help", help_path,style: 'color:#FFFFFF;' %></li>
           <% if swot_signed_in? %>
-            <li><%= link_to "Users", swot_users_path,style: 'color:#FFFFFF;' %></li>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <li id="fat-menu" class="dropdown"  >
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:#FFFFFF;">
                 Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Profile", swot_current_user %></li>
                 <li><%= link_to "Settings", edit_swot_user_path(swot_current_user) %></li>
-                <li class="divider"></li>
                 <li>
-                  <%= link_to "Sign out", signout_path, method: "delete",style: 'color:#FFFFFF;'%>
+                  <%= link_to "Sign out", signout_path, method: "delete" %>
                 </li>
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "Sign in", signin_path,style: 'color:#FFFFFF;' %></li>
+            <li><%= link_to "SWOT_register", signin_path,style: 'color:#FFFFFF;' %></li>
           <% end %>
         </ul>
       </nav>

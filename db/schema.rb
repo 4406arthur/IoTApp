@@ -13,8 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140611164745) do
 
-  create_table "devices", force: true do |t|
-    t.integer  "device_id"
+  create_table "devices", primary_key: "device_id", force: true do |t|
     t.integer  "swot_user_id"
     t.string   "name"
     t.datetime "created_at"
@@ -39,8 +38,7 @@ ActiveRecord::Schema.define(version: 20140611164745) do
 
   add_index "suggestions", ["swot_user_id", "created_at"], name: "index_suggestions_on_swot_user_id_and_created_at"
 
-  create_table "swot_users", force: true do |t|
-    t.integer  "fb_id"
+  create_table "swot_users", primary_key: "fb_id", force: true do |t|
     t.integer  "gw_id"
     t.string   "name"
     t.datetime "created_at"

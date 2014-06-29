@@ -10,9 +10,9 @@
                 data: {
                         service_id: 60, 
                         service_secret: "a98fa6a13fe2ba98c28fa52dabcd9acd",
-                        gwid: 1,                
+                        gw_id: 1,                
                        },
-                type:  "POST",
+                type:  "GET",
                 dataType: "JSON",
                }).done(function(rep) {
                var item = rep.devices;
@@ -35,9 +35,8 @@
                   data: {
                         service_id: 60, 
                         service_secret: "a98fa6a13fe2ba98c28fa52dabcd9acd",
-                        gwid: 1,
-                        shg_device_id: $thisDeviceId,
-                        type: "add"
+                        gw_id: 1,
+                        device_id: $thisDeviceId,
                        },
                   type:  "POST",
                   dataType: "JSON",
