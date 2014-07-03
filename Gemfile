@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'chartkick'
 gem 'mysql2'
 gem 'sass', '~> 3.2.0'
 gem 'rails', '4.1.0'

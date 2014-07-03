@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140611164745) do
     t.datetime "updated_at"
   end
 
-  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
 
   create_table "suggestions", force: true do |t|
     t.string   "content"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140611164745) do
     t.datetime "updated_at"
   end
 
-  add_index "suggestions", ["swot_user_id", "created_at"], name: "index_suggestions_on_swot_user_id_and_created_at"
+  add_index "suggestions", ["swot_user_id", "created_at"], name: "index_suggestions_on_swot_user_id_and_created_at", using: :btree
 
   create_table "swot_users", primary_key: "fb_id", force: true do |t|
     t.integer  "gw_id"
@@ -55,6 +55,6 @@ ActiveRecord::Schema.define(version: 20140611164745) do
     t.boolean  "admin",           default: false
   end
 
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
 end

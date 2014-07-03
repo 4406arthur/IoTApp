@@ -44,6 +44,7 @@ GEM
     bootstrap-will_paginate (0.0.9)
       will_paginate
     builder (3.2.2)
+    chartkick (1.3.1)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -139,6 +140,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootstrap-sass (= 3.1.1)
   bootstrap-will_paginate (= 0.0.9)
+  chartkick
   coffee-rails (~> 4.0.0)
   faker (= 1.1.2)
   jbuilder (~> 2.0)
