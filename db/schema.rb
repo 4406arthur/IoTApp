@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611164745) do
+ActiveRecord::Schema.define(version: 20140703095504) do
 
   create_table "devices", primary_key: "device_id", force: true do |t|
     t.integer  "swot_user_id"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20140611164745) do
   end
 
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
+
+  create_table "sense_values", force: true do |t|
+    t.string   "data"
+    t.integer  "device_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "suggestions", force: true do |t|
     t.string   "content"
