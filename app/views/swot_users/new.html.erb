@@ -30,6 +30,7 @@
                   $thisDeviceId = $thisBtn.data("device-id"),
                   $thisDeviceName = $thisBtn.data("device-name");
                   console.log($thisDeviceId);
+                  console.log($thisDeviceName);
                   $.ajax({
                   url: "http://140.138.150.52/task_manager/v2/subscribe",
                   data: {
@@ -43,10 +44,9 @@
                   }).done(function(rep) {
                     $thisBtn.closest("div[class^='panel']").remove();
                     $.ajax({
-                    url: "http://140.138.150.57:3000/creation?dev_id="+$thisDeviceId+"&name="+$thisDeviceName,
-                   
+                    url: encodeURI("http://140.138.150.57:3000/creation?dev_id="+$thisDeviceId+"&name="+$thisDeviceName),
                     type: "get",
-                    datatype: "text/plain",
+                    datatype: "text/plain"
                     })                
            });
           })

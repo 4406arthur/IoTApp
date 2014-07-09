@@ -18,7 +18,8 @@ class DevicesController < ApplicationController
   end
 
   def chart
-    @value = current_user.devices
+    @devices = current_user.devices
+    #render json: current_user.devices.group(:name).group_by_day(:created_at).count.chart_json
   end
 
   private 

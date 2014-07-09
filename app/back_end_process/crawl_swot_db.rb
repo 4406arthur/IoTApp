@@ -29,7 +29,7 @@ end
 
 
 def get_value(gw_id, device_id)
-  uri = URI('http://140.138.150.52/task_manager/v2/device?')
+  uri = URI('http://140.138.150.52/task_manager/v2/device')
   params = {:service_id => 60, :service_secret => 'a98fa6a13fe2ba98c28fa52dabcd9acd', :gw_id => gw_id, :device_id => device_id }
   uri.query = URI.encode_www_form(params)
 
@@ -55,5 +55,5 @@ loop do
     	end
     end
 
-    sleep(1.hours)
+    sleep(1.minutes)
 end

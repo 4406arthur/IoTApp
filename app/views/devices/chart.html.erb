@@ -11,10 +11,7 @@
     <div class="col-md-8">
       <h3>Environment data info</h3>
       <div class="center lead">
-        <%= timeline [["Washington", "1789-04-29", "1797-03-03"],
-  			["Adams", "1797-03-03", "1801-03-03"],
-  			["Jefferson", "1801-03-03", "1809-03-03"]] 
-  	    %>
+      <%= line_chart @devices.group(:name).group_by_second(:created_at).sum(:device_id) %>
       </div>
     </div>
 </div>
