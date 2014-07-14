@@ -1,0 +1,11 @@
+.bundle/
+log/*.log
+pkg/
+spec/dummy/logs
+spec/dummy/public
+spec/dummy/temp
+
+*.gem
+
+Gemfile.lock
+.DS_Store

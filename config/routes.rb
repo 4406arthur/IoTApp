@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   match '/creation', to:'devices#new',  via: 'get'
   match '/device', to:'devices#show', via: 'get'
   match '/chart', to: 'devices#chart', via: 'get'
+  match '/pic', to: 'devices#pic', via: 'get'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

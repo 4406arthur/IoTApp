@@ -1,0 +1,14 @@
+#rg-gallery.rg-gallery
+  .rg-thumbs
+    // Elastislide Carousel Thumbnail Viewer
+    .es-carousel-wrapper
+      .es-nav
+        %span.es-nav-prev
+          = t('rgallery.previous')
+        %span.es-nav-next
+          = t('rgallery.next')
+      .es-carousel
+        %ul
+          - photos.all.each do |photo|
+            = gallery_image :responsive, photo, wrap: true
+                

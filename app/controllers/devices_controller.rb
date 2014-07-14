@@ -22,6 +22,10 @@ class DevicesController < ApplicationController
     #render json: current_user.devices.group(:name).group_by_day(:created_at).count.chart_json
   end
 
+  def pic
+    @images = Dir.glob("app/assets/images/slide/*.jpg")
+  end
+
   private 
     def current_user
       currnet_user = SwotUser.find_by(fb_id: session[:fb_id])
