@@ -4,7 +4,7 @@
     Posted <%= time_ago_in_words(suggestion.created_at) %> ago.
   </span>
   <% if swot_current_user?(suggestion.swot_user) %>
-    <%= link_to "delete", suggestion, method: :delete,
+    <%= link_to "Delete", suggestion, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: suggestion.content %>
   <% end %>

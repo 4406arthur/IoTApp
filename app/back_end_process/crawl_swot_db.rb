@@ -26,6 +26,10 @@ class SenseValue < ActiveRecord::Base
 	belongs_to :device
 end
 
+class Suggestion < ActiveRecord::Base
+  belongs_to :swot_user
+end
+
 
 
 def get_value(gw_id, device_id)
@@ -42,18 +46,38 @@ def get_value(gw_id, device_id)
   #Post.create(:title => json_data["data"], :description => 'test')
 end
 
+def get_test
+  prng = Random.new
+  val = prng.rand(20.0..30.0)
+  puts val
+  return val
+end
+
+def throw_event
+  return 'sensor not working'
+end
 
 
 loop do
     SwotUser.all.each do |u|
+      fb_id = u.fb_id
     	gw_id = u.gw_id
     	dev = u.devices
     	dev.each do |d|
     		device_id= d.device_id
-    		val = get_value(gw_id, device_id)
+    		#val = get_value(gw_id, device_id)
+        #for test
+        val = get_test
     		SenseValue.create(:data => val, :device => d)
-    	end
+      end
+    end
+   
+    #for test throw_event
+    SwotUser.all.each do |u|
+      msg = throw_event
+      Suggestion.create(:content => msg, :swot_user => u)
     end
 
-    sleep(1.minutes)
+
+    sleep(1.hours)
 end

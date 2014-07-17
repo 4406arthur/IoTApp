@@ -16,8 +16,20 @@
 //= require turbolinks
 //= require_tree .
 
-$('.list-group').on('click', 'ul', function (e) {
-    console.log('test')
-    $('panel').slideIn();
+
+
+
+$(function()
+ {
+ 	$('.cmd').hide();
+ });
+
+
+$(document).on('click', '.list-group-item-info', function (e) {   
+    $(this).find('.cmd').toggle("show");
+    //$(this).insertAfter($('<div>ghcgfhnffh</div>').slideIn());
 });
+
+
+
 

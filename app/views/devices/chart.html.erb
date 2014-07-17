@@ -11,7 +11,10 @@
     <div class="col-md-8">
       <h3>Environment data info</h3>
       <div class="center lead">
-      <%= line_chart @devices.group(:name).group_by_second(:created_at).sum(:device_id) %>
+        <% @devices.each do |device| %>
+        <em><%= device.name %></em>
+        <%= line_chart device.sense_values.group_by_day(:created_at).average(:data), library: {backgroundColor: "#eee"} %>
+        <%end%>
       </div>
     </div>
 </div>

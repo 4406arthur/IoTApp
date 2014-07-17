@@ -1,5 +1,10 @@
   <li class="list-group-item list-group-item-info">
-  
-    <%= device.name %>
-    <%= link_to("Destroy", swot_user_device_path(device.swot_user, device), :class => "btn btn-danger btn-xs pull-right", :method => :delete, :remote => true   , :confirm => "are you sure?") %>
+    <div class="panel panel-default">
+      <div class="panel-heading"> <%= device.name %> 
+        <%= link_to("Destroy", swot_user_device_path(device.swot_user, device), :class => "btn btn-danger btn-xs pull-right", :method => :delete, :remote => true   , :confirm => "are you sure?") %> </div>
+          <%if device.name == 'room_humidity' %>
+            <div class="panel-body text-center cmd">   
+              <div class="btn btn-primary  ">Test</div>
+            </div>
+           <% end %>
   </li>
