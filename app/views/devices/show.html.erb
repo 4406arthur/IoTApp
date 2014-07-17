@@ -8,9 +8,11 @@
       </section>
     </aside>
     <div class="col-md-8">
-      <h3>Your Subscription managemant</h3>
-        <ul class="users">
-          <%= render @devices %>
-        </ul>
+      <h3>Your Subscription managemant  
+          <%= link_to("New", '/signup', :class => "btn btn-success btn-lg active ") %>  </h3>
+          <br><br>
+          <ul class="list-group">
+            <%= render @devices %>
+          </ul>
     </div>
 </div>

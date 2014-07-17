@@ -44,7 +44,7 @@
                   }).done(function(rep) {
                     $thisBtn.closest("div[class^='panel']").remove();
                     $.ajax({
-                    url: encodeURI("http://140.138.150.57:3000/creation?dev_id="+$thisDeviceId+"&name="+$thisDeviceName),
+                    url: encodeURI("http://140.138.150.57/creation?dev_id="+$thisDeviceId+"&name="+$thisDeviceName),
                     type: "get",
                     datatype: "text/plain"
                     })                

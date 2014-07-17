@@ -1,5 +1,5 @@
 class DevicesController < ApplicationController
-  before_action :current_user, only:[:show, :chart] 
+  before_action :current_user
   def new
     if SwotUser.exists?(:fb_id => session[:fb_id])
       user = SwotUser.find_by(fb_id: session[:fb_id], gw_id: session[:gw_id])
@@ -24,6 +24,18 @@ class DevicesController < ApplicationController
 
   def pic
     @images = Dir.glob("app/assets/images/slide/*.jpg")
+  end
+
+  def destroy
+    @swot_user =SwotUser.find(params[:swot_user_id])
+    @device = @swot_user.devices.find(params[:id])
+    @device.destroy
+
+    respond_to do |format|
+      format.html { redirect_to '/devices', notice: 'Device was successfully destroyed.' }
+      format.json { head :no_content }
+      format.js 
+    end
   end
 
   private 

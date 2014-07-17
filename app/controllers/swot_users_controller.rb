@@ -13,13 +13,14 @@ class SwotUsersController < ApplicationController
        #render :text => "have to subcribe service"
        session[:fb_id]= params[:fb_id]
        session[:gw_id] = params[:gw_id]
-       redirect_to "http://140.138.150.57:3000"
+       redirect_to "http://140.138.150.57"
     end
   end
 
   def index
     @users = SwotUser.paginate(page: params[:page])
   end
+  
   def show
     @user = SwotUser.find(params[:id])
     @suggestions = @user.suggestions.paginate(page: params[:page])

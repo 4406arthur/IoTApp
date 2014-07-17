@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :suggestions, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
-
-  resources :swot_users
-
+  resources :swot_users do
+    resources :devices
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/check',   to: 'swot_users#check',   via: 'get'
   match '/creation', to:'devices#new',  via: 'get'
-  match '/device', to:'devices#show', via: 'get'
+  match '/devices', to:'devices#show', via: 'get'
   match '/chart', to: 'devices#chart', via: 'get'
   match '/pic', to: 'devices#pic', via: 'get'
   # Example of regular route:
