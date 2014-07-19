@@ -1,5 +1,5 @@
 class SuggestionsController < ApplicationController
-before_action :swot_signed_in_user, only: [:create, :destroy]
+before_action :swot_signed_in_user
 before_action :correct_user, only: :destroy
   def create
     @suggestion = swot_current_user.suggestions.build(suggestion_params)
@@ -13,7 +13,11 @@ before_action :correct_user, only: :destroy
 
   def destroy
   	@suggestion.destroy
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.json { head :no_content }
+      format.js 
+    end
   end
 
   private

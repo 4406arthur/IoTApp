@@ -13,12 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20140703095504) do
 
-  create_table "devices", primary_key: "device_id", force: true do |t|
-    t.integer  "swot_user_id"
+  create_table "devices", id: false, force: true do |t|
+    t.integer  "device_id",    default: 0, null: false
+    t.integer  "swot_user_id", default: 0, null: false
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "devices", ["swot_user_id", "device_id"], name: "index_devices_on_swot_user_id_and_device_id", unique: true, using: :btree
 
   create_table "sense_values", force: true do |t|
     t.float    "data"

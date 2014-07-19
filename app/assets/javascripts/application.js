@@ -26,7 +26,7 @@ $(function()
 
 
 $(document).on('click', '.list-group-item-info', function (e) {   
-    $(this).find('.cmd').toggle("show");
+    $(this).find('.cmd').toggle(600);
     //$(this).insertAfter($('<div>ghcgfhnffh</div>').slideIn());
 });
 

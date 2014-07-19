@@ -18,12 +18,15 @@ class SwotUser < ActiveRecord::Base
 end
 
 class Device < ActiveRecord::Base
-  has_many :sense_values ,dependent: :destroy
-  belongs_to :swot_user
+  belongs_to :swot_user, :foreign_key => [ :device_id, :swot_user_id]
+  has_many :sense_values ,dependent: :destroy, :foreign_key => [ :device_id, :swot_user_id]
+  
+  self.primary_key = :device_id, :swot_user_id
+
 end
 
 class SenseValue < ActiveRecord::Base
-	belongs_to :device
+	belongs_to :device ,:foreign_key => [ :device_id, :swot_user_id]
 end
 
 class Suggestion < ActiveRecord::Base
@@ -68,7 +71,7 @@ loop do
     		#val = get_value(gw_id, device_id)
         #for test
         val = get_test
-    		SenseValue.create(:data => val, :device => d)
+    		SenseValue.create(:data => val, :device_id => device_id)
       end
     end
    

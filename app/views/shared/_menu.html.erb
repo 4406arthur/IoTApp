@@ -1,6 +1,9 @@
-<ul class="nav nav-pills nav-stacked">
-  <li class "active"><%= link_to "Suggestion", root_path,style: 'color:#333333;' %> </li>
-  <li><%= link_to "Chart_info", '/chart', style: 'color:#333333;' %></li>
-  <li><%= link_to "Plant_view", '/pic', style: 'color:#333333;' %><li>
-  <li><%= link_to "Devices", '/devices', style: 'color:#333333;' %><li>
-</ul>
+<div class="list-group">
+
+ <%= link_to "Suggestion", root_path, style: 'color:#333333;', :class => "list-group-item list-group-item-success" %> 
+ <%= link_to "Chart_info", '/chart', style: 'color:#333333;', :class => "list-group-item list-group-item-success"  %>
+ <%= link_to "Plant_view", '/pic', style: 'color:#333333;', :class => "list-group-item list-group-item-success" %>
+ <%= link_to "Live_view", '/cam', style: 'color:#333333;', :class => "list-group-item list-group-item-success" %>
+ <%= link_to "Devices", '/devices', style: 'color:#333333;', :class => "list-group-item list-group-item-success" %>
+
+</div>
