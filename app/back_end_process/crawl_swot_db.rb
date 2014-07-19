@@ -51,7 +51,7 @@ end
 
 def get_test
   prng = Random.new
-  val = prng.rand(20.0..30.0)
+  val = prng.rand(1.0..40.0)
   puts val
   return val
 end

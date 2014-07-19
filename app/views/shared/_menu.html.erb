@@ -1,9 +1,19 @@
-<div class="list-group">
+<nav class="navbar navbar-defalut" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" style="background: #5bc0de;">
+      <button type="button" class="navbar-toggle navbar-btn btn-lg btn-block" data-toggle="collapse" data-target="#bs-example-navbar-collapse-menu"><i class="fa fa-arrow-circle-down"></i>Menu</button>
+    </div>
 
- <%= link_to "Suggestion", root_path, style: 'color:#333333;', :class => "list-group-item list-group-item-success" %> 
- <%= link_to "Chart_info", '/chart', style: 'color:#333333;', :class => "list-group-item list-group-item-success"  %>
- <%= link_to "Plant_view", '/pic', style: 'color:#333333;', :class => "list-group-item list-group-item-success" %>
- <%= link_to "Live_view", '/cam', style: 'color:#333333;', :class => "list-group-item list-group-item-success" %>
- <%= link_to "Devices", '/devices', style: 'color:#333333;', :class => "list-group-item list-group-item-success" %>
-
-</div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-menu" >
+      <ul class="nav  nav-pills nav-stacked">
+		<li class="active"><%= link_to "Suggestion", root_path %> </li>
+		<li class="active"><%= link_to "Chart_info", '/chart'%></li>
+		<li class="active"><%= link_to "Plant_view", '/pic' %></li>
+		<li class="active"><%= link_to "Live_view", '/cam' %></li>
+		<li class="active"><%= link_to "Devices", '/devices' %></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

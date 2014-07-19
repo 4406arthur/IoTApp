@@ -17,7 +17,7 @@
                }).done(function(rep) {
                var item = rep.devices;
                  for (var i in item ){
-                    $('#items').append('<div class = "col-md-4"><div class="panel panel-success well well-lg">'+item[i].device_name+'<br>'
+                    $('#items').append('<div class = "col-md-4"> <div class="panel panel-success well well-lg">'+item[i].device_name+'<br>'
                       + '<button data-device-id='+ item[i].shg_device_id  +' data-device-name='+ item[i].device_name +' type="button" class="btn btn-primary submit-device">'+ "submit" +'</button></div></div>');
                  }
                })

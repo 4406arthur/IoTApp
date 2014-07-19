@@ -1,5 +1,5 @@
 <div class="row">
-    <aside class="col-md-4">
+    <aside class="col-md-3">
       <section>
         <%= render 'shared/user_info' %>
       </section>
@@ -8,8 +8,8 @@
       </section>
     </aside>
     <div class="col-md-8">
-      <h3>Your Subscription managemant  
-          <%= link_to("New", '/signup', :class => "btn btn-success btn-lg active ") %>  </h3>
+      <h3>Device control  
+          <%= link_to("Add device", '/signup', :class => "glyphicon glyphicon-plus pull-right") %>  </h3>
           <br><br>
           <ul class="list-group">
             <%= render @devices %>

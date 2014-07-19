@@ -27,7 +27,7 @@ class DevicesController < ApplicationController
   end
 
   def cam
-    @images = Dir.glob("app/assets/images/slide/*.jpg")
+
   end
 
 

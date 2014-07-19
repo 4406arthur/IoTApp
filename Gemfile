@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'font-awesome-sass'
 gem 'composite_primary_keys'
 gem 'rails-gallery'
 gem 'groupdate'
