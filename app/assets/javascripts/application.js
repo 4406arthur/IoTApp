@@ -51,19 +51,37 @@ $(document)
 
 
 .on('click','.fa-arrow-left', function (e) { 
-	myFunction('http://140.138.150.69/pantiltcontrol.cgi','post',{
-	PanSingleMoveDegree: 5,
-	TiltSingleMoveDegree: 5,
-	PanTiltSingleMove: 3})
+	$.ajax({
+                url: "http://140.138.150.69/pantiltcontrol.cgi",
+                dataType: 'jsonp',
+                crossDomain: true,
+                data: {
+                        PanSingleMoveDegree: 5,
+                        TiltSingleMoveDegree: 5,
+                        PanTiltSingleMove: 3
+                       },
+                success: function(e){
+                  console.log(e)
+                }
+    });
 })
 
 
 
 .on('click','.fa-arrow-right', function (e) { 
-	myFunction('http://140.138.150.69/pantiltcontrol.cgi','post',{
-	PanSingleMoveDegree: 5,
-	TiltSingleMoveDegree: 5,
-	PanTiltSingleMove: 5})
+	$.ajax({
+                url: "http://140.138.150.69/pantiltcontrol.cgi",
+                dataType: 'jsonp',
+                crossDomain: true,
+                data: {
+                        PanSingleMoveDegree: 5,
+                        TiltSingleMoveDegree: 5,
+                        PanTiltSingleMove: 5
+                       },
+                success: function(e){
+                  console.log(e)
+                }
+    });
 })
 
 
@@ -75,12 +93,29 @@ $(document)
                 data: {
                         PanSingleMoveDegree: 5,
 						TiltSingleMoveDegree: 5,
-						PanTiltSingleMove: 5
+						PanTiltSingleMove: 1
                        },
                 success: function(e){
                   console.log(e)
                 }
 	});
+})
+
+
+.on('click','.fa-arrow-down', function (e) {
+     $.ajax({
+                url: "http://140.138.150.69/pantiltcontrol.cgi",
+                dataType: 'jsonp',
+                crossDomain: true,
+                data: {
+                        PanSingleMoveDegree: 5,
+                        TiltSingleMoveDegree: 5,
+                        PanTiltSingleMove: 7
+                       },
+                success: function(e){
+                  console.log(e)
+                }
+    });
 });
  
  
