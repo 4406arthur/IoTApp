@@ -3,16 +3,16 @@ class SwotUsersController < ApplicationController
   before_action :swot_correct_user,   only: [:edit, :update]
   
   def check
-    user = SwotUser.find_by(fb_id: params[:fb_id] )
+    user = SwotUser.find_by(fb_id: params[:fbid] )
     if user
-       session[:fb_id]= params[:fb_id]
-       session[:gw_id] = params[:gw_id]  
+       session[:fb_id]= params[:fbid]
+       session[:gw_id] = params[:gwid]  
        swot_sign_in user
        redirect_to user
     else
        #render :text => "have to subcribe service"
-       session[:fb_id]= params[:fb_id]
-       session[:gw_id] = params[:gw_id]
+       session[:fb_id]= params[:fbid]
+       session[:gw_id] = params[:gwid]
        redirect_to "http://140.138.150.57"
     end
   end

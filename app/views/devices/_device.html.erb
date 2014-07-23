@@ -2,9 +2,11 @@
     <div class="panel panel-default">
       <div class="panel-heading"> <%= device.name %> 
         <%= link_to("Destroy", swot_user_device_path(device.swot_user_id, device.device_id), :class => "btn btn-danger btn-xs pull-right", :method => :delete, :remote => true   , :confirm => "are you sure?") %> </div>
-          <%if device.name == 'room_humidity' %>
+          <%if device.name == 'IP' %>
             <div class="panel-body text-center cmd">   
-              <div class="btn btn-primary  ">Test</div>
+              <div class="btn btn-danger  ">
+                <i class="fa fa-lightbulb-o"></i> Led
+              </div>
             </div>
            <% end %>
   </li>

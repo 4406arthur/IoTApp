@@ -49,6 +49,28 @@ $(document)
     //$(this).insertAfter($('<div>ghcgfhnffh</div>').slideIn());
 })
 
+.on('click', '.fa-lightbulb-o', function (e) {
+  console.log('post')
+  $.ajax({
+                url: "http://140.138.150.52/task_manager/v2/attribute",
+                
+                data: {
+                        service_id: 60,
+                        service_secret: 'a98fa6a13fe2ba98c28fa52dabcd9acd',
+                        gw_id: 101,
+                        device_id: 16,
+                        name: 3,
+                        value: 0
+                       },
+                type: 'POST' 
+        }).done(function(rep) {
+                console.log('test')
+
+        })
+
+
+})
+
 
 .on('click','.fa-arrow-left', function (e) { 
 	$.ajax({

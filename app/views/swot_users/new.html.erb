@@ -10,7 +10,7 @@
                 data: {
                         service_id: 60, 
                         service_secret: "a98fa6a13fe2ba98c28fa52dabcd9acd",
-                        gw_id: 8,                
+                        gw_id: <%= session[:gw_id] %>             
                        },
                 type:  "GET",
                 dataType: "JSON",
@@ -37,8 +37,8 @@
                   data: {
                         service_id: 60, 
                         service_secret: "a98fa6a13fe2ba98c28fa52dabcd9acd",
-                        gw_id: 8,
-                        device_id: $thisDeviceId,
+                        gw_id: <%= session[:gw_id] %>,
+                        device_id: $thisDeviceId
                        },
                   type:  "POST",
                   dataType: "JSON",

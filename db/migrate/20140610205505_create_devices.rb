@@ -9,6 +9,7 @@ class CreateDevices < ActiveRecord::Migration
     end
 
     execute "ALTER TABLE devices ADD PRIMARY KEY (device_id ,swot_user_id);"
+    execute "ALTER TABLE devices CHANGE swot_user_id swot_user_id BIGINT(11);"
     add_index :devices, [ "swot_user_id", "device_id"], :unique => true
   end
 

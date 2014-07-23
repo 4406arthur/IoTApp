@@ -27,7 +27,7 @@ class DevicesController < ApplicationController
   end
 
   def cam
-
+    
   end
 
 

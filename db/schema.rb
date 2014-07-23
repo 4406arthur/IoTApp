@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20140703095504) do
 
   create_table "devices", id: false, force: true do |t|
-    t.integer  "device_id",    default: 0, null: false
-    t.integer  "swot_user_id", default: 0, null: false
+    t.integer  "device_id",              default: 0, null: false
+    t.integer  "swot_user_id", limit: 8, default: 0, null: false
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140703095504) do
 
   create_table "suggestions", force: true do |t|
     t.string   "content"
-    t.integer  "swot_user_id"
+    t.integer  "swot_user_id", limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
