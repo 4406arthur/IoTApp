@@ -11,38 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140703095504) do
+ActiveRecord::Schema.define(version: 20140727100105) do
 
   create_table "devices", id: false, force: true do |t|
-    t.integer  "device_id",              default: 0, null: false
-    t.integer  "swot_user_id", limit: 8, default: 0, null: false
+    t.integer "device_id",     default: 0, null: false
+    t.integer "gw_id",         default: 0, null: false
+    t.integer "plant_wall_id"
+    t.string  "name"
+    t.string  "category"
+  end
+
+  add_index "devices", ["device_id", "gw_id"], name: "index_devices_on_device_id_and_gw_id", using: :btree
+
+  create_table "plant_walls", force: true do |t|
+    t.integer  "swot_user_id"
     t.string   "name"
+    t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "devices", ["swot_user_id", "device_id"], name: "index_devices_on_swot_user_id_and_device_id", unique: true, using: :btree
-
   create_table "sense_values", force: true do |t|
-    t.float    "data"
     t.integer  "device_id"
+    t.integer  "gw_id"
+    t.float    "data"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "sense_values", ["device_id", "gw_id"], name: "index_sense_values_on_device_id_and_gw_id", using: :btree
+
   create_table "suggestions", force: true do |t|
+    t.integer  "plant_wall_id"
     t.string   "content"
-    t.integer  "swot_user_id", limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "suggestions", ["swot_user_id", "created_at"], name: "index_suggestions_on_swot_user_id_and_created_at", using: :btree
+  add_index "suggestions", ["plant_wall_id", "created_at"], name: "index_suggestions_on_plant_wall_id_and_created_at", using: :btree
 
-  create_table "swot_users", primary_key: "fb_id", force: true do |t|
-    t.integer  "gw_id"
+  create_table "swot_users", primary_key: "gw_id", force: true do |t|
+    t.integer  "fb_id",      limit: 8
     t.string   "name"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

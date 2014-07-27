@@ -1,27 +1,23 @@
 Rails.application.routes.draw do
-  resources :suggestions, only: [:create, :destroy]
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :swot_users do
-    resources :devices
+   resources :swot_users, :shallow => true do
+    resources :plant_walls do
+      resources :suggestions
+      resources :devices
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#home'
+  root 'swot_users#show'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
-  match '/signup',  to: 'swot_users#new',   via: 'get'
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  #match '/signin',  to: 'sessions#create',         via: 'get' #post
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
-  match '/check',   to: 'swot_users#check',   via: 'get'
-  match '/creation', to:'devices#new',  via: 'get'
-  match '/devices', to:'devices#show', via: 'get'
-  match '/chart', to: 'devices#chart', via: 'get'
-  match '/pic', to: 'devices#pic', via: 'get'
-  match '/cam', to: 'devices#cam', via: 'get'
+  match '/creation', to:'devices#create',  via: 'get'
+  match '/plant_walls/:plant_wall_id/chart' => 'devices#chart', :as => :chart, via: 'get'
+  match '/plant_walls/:plant_wall_id/pic' => 'devices#pic', :as => :pic, via: 'get'
+  match '/plant_walls/:plant_wall_id/cam' => 'devices#cam', :as => :cam, via: 'get'
+ 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

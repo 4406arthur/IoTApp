@@ -1,10 +1,10 @@
 class SuggestionsController < ApplicationController
-before_action :swot_signed_in_user
-before_action :correct_user, only: :destroy
+before_action :current_wall
+
   def create
-    @suggestion = swot_current_user.suggestions.build(suggestion_params)
+    @suggestion = @wall.suggestions.build(suggestion_params)
     if @suggestion.save
-      flash[:success] = "Micropost created!"
+      flash[:success] = "suggestion created!"
       redirect_to root_url
     else
       render 'static_pages/home'
@@ -12,6 +12,7 @@ before_action :correct_user, only: :destroy
   end
 
   def destroy
+    @suggestion = @wall.suggestions.find_by(id: params[:id])
   	@suggestion.destroy
     respond_to do |format|
       format.html { redirect_to root_url }
@@ -20,14 +21,17 @@ before_action :correct_user, only: :destroy
     end
   end
 
+  def index
+    @feed_items = @wall.feed.paginate(page: params[:page])
+  end
+
   private
 
     def suggestion_params
       params.require(:suggestion).permit(:content)
     end
 
-    def correct_user
-      @suggestion = swot_current_user.suggestions.find_by(id: params[:id])
-      redirect_to root_url if @suggestion.nil?
+    def current_wall
+      @wall = PlantWall.find(params[:plant_wall_id])
     end
 end

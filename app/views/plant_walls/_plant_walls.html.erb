@@ -1,0 +1,5 @@
+  <li class="list-group-item list-group-item-info">
+    <div class="panel panel-default">
+      <div class="panel-heading"> <%= device.name %> 
+        <%= link_to("Destroy", swot_user_device_path(device.swot_user_id, device.device_id), :class => "btn btn-danger btn-xs pull-right", :method => :delete, :remote => true   , :confirm => "are you sure?") %> </div>
+  </li>

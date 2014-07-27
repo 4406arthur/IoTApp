@@ -1,0 +1,24 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <h1>
+       
+
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h3> <%= 'Edit a plantWall' %> </h3>
+    <div class="center lead">
+      <%= form_for @wall do |f| %>
+        <%= f.label :"PlantWall name" %>
+        <%= f.text_field :name, :class => "input-xxsmall"%>
+        <%= f.label :"PlantWall location" %>
+        <%= f.text_field :location, :class => "input-xxsmall"%>
+
+
+        <%= f.submit "Submit", :class => "btn btn-primary" %>
+      <% end %>
+    </div> 
+  </div>
+</div>

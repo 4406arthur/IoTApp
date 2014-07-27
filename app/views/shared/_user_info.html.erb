@@ -1,10 +1,12 @@
 <%= link_to swot_gravatar_for(swot_current_user, size: 52), swot_current_user %>
 <h1>
-  <%= swot_current_user.name %>
+  <%= @wall.name %>
+  <br>
+  <%= @wall.location%>
 </h1>
 <span>
-  <%= link_to "view my profile ", swot_current_user %>
+  <%= link_to "back to homepage ", swot_current_user %>
 </span>
 <span>
-  <%= pluralize(swot_current_user.suggestions.count, "Suggestions") %>
+  <%= pluralize(@wall.suggestions.count, "Suggestions") %>
 </span>

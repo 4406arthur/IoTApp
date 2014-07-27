@@ -1,0 +1,13 @@
+  <li class="list-group-item list-group-item-info">
+    <div class="panel panel-default">
+      <div class="panel-heading"> 
+        <%= link_to(plant_wall.name, plant_wall_suggestions_path(plant_wall)) %> 
+        <div class =" text-center">
+        <%= plant_wall.location%>
+       
+        <%= link_to("Edit", edit_plant_wall_path(plant_wall), :class => "btn btn-info btn-xs pull-right" ) %>
+        <%= link_to("Bind_Device", new_plant_wall_device_path(plant_wall), :class => "btn btn-success btn-xs pull-right", :confirm => "are you sure?") %>
+        <%= link_to("Destroy", plant_wall_path(plant_wall), :class => "btn btn-danger btn-xs pull-right", :method => :delete, :confirm => "are you sure?") %> 
+        </div>
+      </div>
+  </li>

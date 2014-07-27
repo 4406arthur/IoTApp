@@ -10,5 +10,5 @@ loop do
   f.write(res)
   f.close
   $count += 1
-  sleep 3600
+  sleep 7200
 end

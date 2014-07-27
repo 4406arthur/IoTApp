@@ -1,19 +1,27 @@
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-3">
     <section>
       <h1>
         <%= swot_gravatar_for @user %>
         <%= @user.name %>
+        <br><br>
+        <%= @user.email %>
       </h1>
     </section>
   </aside>
-  <div class="col-md-8">
-    <% if @user.suggestions.any? %>
-      <h3>Suggestions (<%= @user.suggestions.count %>)</h3>
+  <div class="col-md-9">
+    <% if @user.plant_walls.any? %>
+      <h3>PlantWalls (<%= @user.plant_walls.count %>)
+          <%= link_to("More plantWall", new_swot_user_plant_wall_path(@user), :class => "glyphicon glyphicon-plus pull-right") %>  </h3>
+      <br><br> 
       <ol class="microposts">
-        <%= render @suggestions %>
+        <ul class="list-group">
+          <%= render @plant_walls %>
+        </ul>
       </ol>
-      <%= will_paginate @suggestions %>
+    <% else %>
+      <%= flash[:success] = "You must set up a plantWall" %>
+      <%= link_to("Set up plantWall" , new_swot_user_plant_wall_path(@user), :class => "btn btn-danger") %>
     <% end %>
   </div>
 </div>

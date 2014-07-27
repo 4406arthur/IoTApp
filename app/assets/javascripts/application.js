@@ -16,6 +16,8 @@
 //= require turbolinks
 //= require_tree .
 
+
+
 function myFunction(action, method, input) {
     "use strict";
     var form;
@@ -39,17 +41,17 @@ function myFunction(action, method, input) {
 
 $(function()
  {
- 	$('.cmd').hide();
+    $('.cmd').hide();
  });
 
 
 $(document)
 .on('click', '.list-group-item-info', function (e) {   
-    $(this).find('.cmd').toggle(600);
+    $(this).find('.cmd').show();
     //$(this).insertAfter($('<div>ghcgfhnffh</div>').slideIn());
 })
 
-.on('click', '.fa-lightbulb-o', function (e) {
+.on('click', '.light', function (e) {
   console.log('post')
   $.ajax({
                 url: "http://140.138.150.52/task_manager/v2/attribute",
@@ -66,14 +68,14 @@ $(document)
         }).done(function(rep) {
                 console.log('test')
 
-        })
+        });
 
 
 })
 
 
 .on('click','.fa-arrow-left', function (e) { 
-	$.ajax({
+    $.ajax({
                 url: "http://140.138.150.69/pantiltcontrol.cgi",
                 dataType: 'jsonp',
                 crossDomain: true,
@@ -91,7 +93,7 @@ $(document)
 
 
 .on('click','.fa-arrow-right', function (e) { 
-	$.ajax({
+    $.ajax({
                 url: "http://140.138.150.69/pantiltcontrol.cgi",
                 dataType: 'jsonp',
                 crossDomain: true,
@@ -108,19 +110,19 @@ $(document)
 
 
 .on('click','.fa-arrow-up', function (e) {
-	 $.ajax({
+     $.ajax({
                 url: "http://140.138.150.69/pantiltcontrol.cgi",
                 dataType: 'jsonp',
                 crossDomain: true,
                 data: {
                         PanSingleMoveDegree: 5,
-						TiltSingleMoveDegree: 5,
-						PanTiltSingleMove: 1
+                        TiltSingleMoveDegree: 5,
+                        PanTiltSingleMove: 1
                        },
                 success: function(e){
                   console.log(e)
                 }
-	});
+    });
 })
 
 
@@ -140,7 +142,3 @@ $(document)
     });
 });
  
- 
-
-
-

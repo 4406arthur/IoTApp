@@ -1,24 +1,19 @@
 class DevicesController < ApplicationController
-  before_action :current_user
-  def new
-    if SwotUser.exists?(:fb_id => session[:fb_id])
-      user = SwotUser.find_by(fb_id: session[:fb_id], gw_id: session[:gw_id])
-      Device.create(:device_id => params[:dev_id],:swot_user_id => params[:swot_user],:name => params[:name])
-      flash[:sucess] = "subcribe success"
-      render :nothing => true
-    else
-      user = SwotUser.create(:fb_id => session[:fb_id], :gw_id => session[:gw_id])
-      Device.create(:device_id => params[:dev_id],:swot_user_id => params[:swot_user],:name => params[:name])
-      render :nothing => true
-    end
+  before_action :current_wall
+  def new  
+  end
+
+  def create
+    Device.create(:device_id => params[:dev_id], :gw_id => params[:gw_id] ,:plant_wall_id => params[:plant_wall_id],:name => params[:name])
+    render :nothing => true
   end
   
-  def show
-    @devices = current_user.devices
+  def index
+    @devices = @wall.devices
   end
 
   def chart
-    @devices = current_user.devices
+    @devices = @wall.devices
     #render json: current_user.devices.group(:name).group_by_day(:created_at).count.chart_json
   end
 
@@ -34,7 +29,7 @@ class DevicesController < ApplicationController
 
   def destroy
     #@swot_user =SwotUser.find(params[:swot_user_id])
-    @device = Device.find_by( swot_user_id: params[:swot_user_id], device_id: params[:id])
+    @device = Device.find(params[:id])
     @device.destroy
 
     respond_to do |format|
@@ -45,8 +40,8 @@ class DevicesController < ApplicationController
   end
 
   private 
-    def current_user
-      currnet_user = SwotUser.find_by(fb_id: session[:fb_id])
+    def current_wall
+      @wall = PlantWall.find(params[:plant_wall_id])
     end
   
 end

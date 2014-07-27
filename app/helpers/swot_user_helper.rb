@@ -1,6 +1,6 @@
 module SwotUserHelper
   def swot_gravatar_for(swot_user, options = {size: 50})
-    swot_gravatar_id = swot_user.fb_id
+    swot_gravatar_id = swot_user.gw_id
     size = options[:size]
     swot_gravatar_url ="https://secure.gravatar.com/avatar/#{swot_gravatar_id}?s=#{size}"
     image_tag(swot_gravatar_url, alt: swot_user.name, class: "gravatar")
