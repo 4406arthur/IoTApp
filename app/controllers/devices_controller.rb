@@ -1,5 +1,5 @@
 class DevicesController < ApplicationController
-  before_action :current_wall
+  before_action :current_wall, except: :destroy
   def new  
   end
 
@@ -28,12 +28,14 @@ class DevicesController < ApplicationController
 
 
   def destroy
-    #@swot_user =SwotUser.find(params[:swot_user_id])
-    @device = Device.find(params[:id])
+    
+    
+    @device = Device.find([ params[:id],session[:gw_id] ])
+    @wall = @device.plant_wall
     @device.destroy
 
     respond_to do |format|
-      format.html { redirect_to '/devices', notice: 'Device was successfully destroyed.' }
+      format.html { redirect_to plant_wall_devices_path(@wall), notice: 'Device was successfully destroyed.' }
       format.json { head :no_content }
       format.js 
     end

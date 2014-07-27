@@ -1,5 +1,5 @@
 class SuggestionsController < ApplicationController
-before_action :current_wall
+before_action :current_wall, except: :destroy
 
   def create
     @suggestion = @wall.suggestions.build(suggestion_params)
@@ -12,10 +12,11 @@ before_action :current_wall
   end
 
   def destroy
-    @suggestion = @wall.suggestions.find_by(id: params[:id])
+    @suggestion = Suggestion.find(params[:id])
+    @wall = @suggestion.plant_wall
   	@suggestion.destroy
     respond_to do |format|
-      format.html { redirect_to root_url }
+      format.html { redirect_to plant_wall_suggestions_path(@wall) }
       format.json { head :no_content }
       format.js 
     end

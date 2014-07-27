@@ -3,4 +3,5 @@ class Device < ActiveRecord::Base
   has_many :sense_values ,dependent: :destroy
   
   self.primary_key = [:device_id, :gw_id]
+
 end

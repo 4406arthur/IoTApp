@@ -1,10 +1,11 @@
 <li id="<%= feed_item.id %>">
-  <%= link_to swot_gravatar_for(feed_item.swot_user), feed_item.swot_user %>
+  <%= link_to swot_gravatar_for(feed_item.plant_wall.swot_user), feed_item.plant_wall %>
   <span class="user">
-    <%= link_to feed_item.swot_user.name, feed_item.swot_user %>
+    <%= link_to feed_item.plant_wall.name, feed_item.plant_wall %>
   </span>
   <span class="content"><%= feed_item.content %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span>
+  <%= link_to("delete", suggestion_path(feed_item),:class => "btn btn-danger btn-xs pull-right", :method => :delete) %>
 </li>

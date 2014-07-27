@@ -14,24 +14,42 @@ ActiveRecord::Base.establish_connection(
 
 
 class SwotUser < ActiveRecord::Base
-  has_many :devices ,dependent: :destroy
+  has_many :plant_walls, dependent: :destroy
+ 
+  self.primary_key = "gw_id"
+
+end
+
+class PlantWall < ActiveRecord::Base
+  has_many :suggestions, dependent: :destroy
+  has_many :devices, dependent: :destroy
+  belongs_to :swot_user
+
+  def feed
+    Suggestion.where("plant_wall_id = ?", id)
+  end
+
 end
 
 class Device < ActiveRecord::Base
-  belongs_to :swot_user, :foreign_key => [ :device_id, :swot_user_id]
-  has_many :sense_values ,dependent: :destroy, :foreign_key => [ :device_id, :swot_user_id]
+  belongs_to :plant_wall
+  has_many :sense_values ,dependent: :destroy
   
-  self.primary_key = :device_id, :swot_user_id
-
+  self.primary_key = [:device_id, :gw_id]
 end
 
-class SenseValue < ActiveRecord::Base
-	belongs_to :device ,:foreign_key => [ :device_id, :swot_user_id]
-end
 
 class Suggestion < ActiveRecord::Base
-  belongs_to :swot_user
+  belongs_to :plant_wall
+  validates  :plant_wall_id, presence: true
+  validates  :content, presence: true
 end
+
+
+class SenseValue < ActiveRecord::Base
+  belongs_to :device, :foreign_key => [:device_id, :gw_id]
+end
+
 
 
 
@@ -51,7 +69,7 @@ end
 
 def get_test
   prng = Random.new
-  val = prng.rand(1.0..40.0)
+  val = prng.rand(1.0..70.0)
   puts val
   return val
 end
@@ -65,20 +83,25 @@ loop do
     SwotUser.all.each do |u|
       fb_id = u.fb_id
     	gw_id = u.gw_id
-    	dev = u.devices
-    	dev.each do |d|
-    		device_id= d.device_id
-    		#val = get_value(gw_id, device_id)
-        #for test
-        val = get_test
-    		SenseValue.create(:data => val, :device_id => device_id)
+      walls = u.plant_walls
+      walls.each do |wall|
+    	  devices = wall.devices
+    	  devices.each do |device|
+    		  #val = get_value(gw_id, device_id)
+          #for test
+          val = get_test
+    		  SenseValue.create(:data => val, :device_id => device.device_id, :gw_id => device.gw_id)
+        end
       end
     end
    
     #for test throw_event
-    SwotUser.all.each do |u|
-      msg = throw_event
-      Suggestion.create(:content => msg, :swot_user => u)
+    SwotUser.all.each do |user|
+      walls = user.plant_walls
+      walls.each do |wall|
+        msg = throw_event
+        Suggestion.create(:content => msg, :plant_wall => wall)
+      end
     end
 
 
