@@ -4,7 +4,7 @@ class DevicesController < ApplicationController
   end
 
   def create
-    Device.create(:device_id => params[:dev_id], :gw_id => params[:gw_id] ,:plant_wall_id => params[:plant_wall_id],:name => params[:name], :category => params[:catelog] )
+    Device.create(:device_id => params[:dev_id], :gw_id => params[:gw_id] ,:plant_wall_id => params[:plant_wall_id],:name => params[:name])
     render :nothing => true
   end
   

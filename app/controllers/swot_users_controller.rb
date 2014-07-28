@@ -32,8 +32,7 @@ class SwotUsersController < ApplicationController
   end
 
   def destroy
-    swot_sign_out
-    redirect_to root_url
+  
   end
 
   def logout

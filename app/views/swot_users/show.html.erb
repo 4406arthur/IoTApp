@@ -12,7 +12,7 @@
   <div class="col-md-9">
     <% if @user.plant_walls.any? %>
       <h3>PlantWalls (<%= @user.plant_walls.count %>)
-          <%= link_to("More plantWall", new_swot_user_plant_wall_path(@user), :class => "glyphicon glyphicon-plus pull-right") %>  </h3>
+          <%= link_to("PlantWall", new_swot_user_plant_wall_path(@user), :class => "glyphicon glyphicon-plus pull-right") %>  </h3>
       <br><br> 
       <ol class="microposts">
         <ul class="list-group">

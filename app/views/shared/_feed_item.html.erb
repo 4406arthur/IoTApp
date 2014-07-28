@@ -7,5 +7,5 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span>
-  <%= link_to("delete", suggestion_path(feed_item),:class => "btn btn-danger btn-xs pull-right", :method => :delete) %>
+  <%= link_to("Delete", suggestion_path(feed_item),:class => "btn btn-danger btn-xs pull-right", :method => :delete, :remote => true ,data: { confirm: "You sure?" }) %>
 </li>

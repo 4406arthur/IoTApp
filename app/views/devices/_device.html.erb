@@ -1,14 +1,13 @@
   <li class="list-group-item list-group-item-info">
     <div class="panel panel-default">
       <div class="panel-heading"> <%= device.name %> 
-        <%= link_to("Destroy", device_path(device), :class => "btn btn-danger btn-xs pull-right", :method => :delete, :confirm => "are you sure?") %> </div>
-
-           <%if device.category == '41' || device.category == '53'  %>
+        <%= link_to("Delete", device_path(device), :class => "btn btn-danger btn-xs pull-right",:method => :delete, :remote => true, data: { confirm: "You sure?" }) %> </div>
+          <%if device.category == '41' || device.category == '53'  %>
             <div class="panel-body text-center cmd">   
-              <btn data-device-id=<%=device.device_id%> data-device-gw=<%=device.gw_id%> type=button class="btn btn-danger on">
+              <btn data-device-id=<%=device.device_id%> data-device-gw=<%=device.gw_id%> type=button class="btn btn-default on">
                 <i class="fa fa-lightbulb-o"></i> On
               </btn>
-              <btn data-device-id=<%=device.device_id%> data-device-gw=<%=device.gw_id%> type=button class="btn btn-info off">
+              <btn data-device-id=<%=device.device_id%> data-device-gw=<%=device.gw_id%> type=button class="btn btn-warning off">
                 <i class="fa fa-lightbulb-o"></i> Off
               </btn>
             </div>
