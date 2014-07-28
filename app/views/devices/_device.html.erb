@@ -2,11 +2,15 @@
     <div class="panel panel-default">
       <div class="panel-heading"> <%= device.name %> 
         <%= link_to("Destroy", device_path(device), :class => "btn btn-danger btn-xs pull-right", :method => :delete, :confirm => "are you sure?") %> </div>
-          <%if device.name == 'IP_CAM' %>
+
+           <%if device.category == '41' || device.category == '53'  %>
             <div class="panel-body text-center cmd">   
-              <div class="btn btn-danger light  ">
-                <i class="fa fa-lightbulb-o"></i> Led
-              </div>
+              <btn data-device-id=<%=device.device_id%> data-device-gw=<%=device.gw_id%> type=button class="btn btn-danger on">
+                <i class="fa fa-lightbulb-o"></i> On
+              </btn>
+              <btn data-device-id=<%=device.device_id%> data-device-gw=<%=device.gw_id%> type=button class="btn btn-info off">
+                <i class="fa fa-lightbulb-o"></i> Off
+              </btn>
             </div>
            <% end %>
   </li>

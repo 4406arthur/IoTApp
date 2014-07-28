@@ -17,33 +17,10 @@
 //= require_tree .
 
 
-
-function myFunction(action, method, input) {
-    "use strict";
-    var form;
-    form = $('<form />', {
-        action: action,
-        method: method,
-        style: 'display: none;'
-    });
-    if (typeof input !== 'undefined') {
-        $.each(input, function (name, value) {
-            $('<input />', {
-                type: 'hidden',
-                name: name,
-                value: value
-            }).appendTo(form);
-        });
-    }
-    form.appendTo('body').submit();
-};
-
-
 $(function()
- {
+{
     $('.cmd').hide();
- });
-
+});
 
 $(document)
 .on('click', '.list-group-item-info', function (e) {   
@@ -51,27 +28,53 @@ $(document)
     //$(this).insertAfter($('<div>ghcgfhnffh</div>').slideIn());
 })
 
-.on('click', '.light', function (e) {
-  console.log('post')
-  $.ajax({
-                url: "http://140.138.150.52/task_manager/v2/attribute",
-                
+
+.on('click', '.on', function (e) {
+
+    var $thisBtn = $(this)
+        $thisDeviceId= $thisBtn.data("device-id")
+        $thisDeviceGw= $thisBtn.data("device-gw")
+    console.log('device_id= '+$thisDeviceId + ' gw_id = ' + $thisDeviceGw)
+
+    $.ajax({
+                url: "http://140.138.150.52/task_manager/v2/attribute",             
                 data: {
                         service_id: 60,
                         service_secret: 'a98fa6a13fe2ba98c28fa52dabcd9acd',
-                        gw_id: 101,
-                        device_id: 16,
+                        gw_id: $thisDeviceGw ,
+                        device_id: $thisDeviceId,
+                        name: 3,
+                        value: 1
+                       },
+                type: 'POST' 
+        }).done(function(rep) {
+                console.log('power on')
+
+        });
+})
+
+.on('click', '.off', function (e) {
+    var $thisBtn = $(this)
+        $thisDeviceId= $thisBtn.data("device-id")
+        $thisDeviceGw= $thisBtn.data("device-gw")
+    console.log('device_id= '+$thisDeviceId + ' gw_id = ' + $thisDeviceGw)
+  $.ajax({
+                url: "http://140.138.150.52/task_manager/v2/attribute",             
+                data: {
+                        service_id: 60,
+                        service_secret: 'a98fa6a13fe2ba98c28fa52dabcd9acd',
+                        gw_id: $thisDeviceGw,
+                        device_id: $thisDeviceId,
                         name: 3,
                         value: 0
                        },
                 type: 'POST' 
         }).done(function(rep) {
-                console.log('test')
+                console.log('power off')
 
         });
-
-
 })
+
 
 
 .on('click','.fa-arrow-left', function (e) { 

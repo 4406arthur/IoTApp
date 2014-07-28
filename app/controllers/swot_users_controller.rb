@@ -5,7 +5,7 @@ class SwotUsersController < ApplicationController
   def show
     if !current_user
       @new_user = SwotUser.create(:gw_id => session[:gw_id], :fb_id => session[:fb_id])
-      redirect_to new_swot_user_plant_wall_path(@new_user)
+      render 'shared/update_info'
     else
       @plant_walls= @user.plant_walls
     end
@@ -48,6 +48,10 @@ class SwotUsersController < ApplicationController
       if params[:gw_id] && params[:fb_id]
         session[:fb_id] = params[:fb_id]
         session[:gw_id] = params[:gw_id]
+      else
+        if !session[:fb_id] && !session[:gw_id]
+          render :text => "Login Swot first"
+        end
       end
     end
 

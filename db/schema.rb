@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140727100105) do
+ActiveRecord::Schema.define(version: 20140728045014) do
 
   create_table "devices", id: false, force: true do |t|
     t.integer "device_id",     default: 0, null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20140727100105) do
   add_index "suggestions", ["plant_wall_id", "created_at"], name: "index_suggestions_on_plant_wall_id_and_created_at", using: :btree
 
   create_table "swot_users", primary_key: "gw_id", force: true do |t|
-    t.integer  "fb_id",      limit: 8
+    t.integer  "fb_id",      limit: 8, null: false
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"

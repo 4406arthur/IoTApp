@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/creation', to:'devices#create',  via: 'get'
+  match '/logout', to:'swot_users#logout', via: 'get'
   match '/plant_walls/:plant_wall_id/chart' => 'devices#chart', :as => :chart, via: 'get'
   match '/plant_walls/:plant_wall_id/pic' => 'devices#pic', :as => :pic, via: 'get'
   match '/plant_walls/:plant_wall_id/cam' => 'devices#cam', :as => :cam, via: 'get'

@@ -9,6 +9,7 @@ loop do
   f = File.new($count.to_s+".jpg","w")
   f.write(res)
   f.close
+  puts 'get '+ $count.to_s + '.jpg'
   $count += 1
   sleep 7200
 end
