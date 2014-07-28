@@ -28,11 +28,12 @@ class SwotUsersController < ApplicationController
   def new
   end
 
+  
   def create
   end
 
-  def destroy
   
+  def destroy
   end
 
   def logout
