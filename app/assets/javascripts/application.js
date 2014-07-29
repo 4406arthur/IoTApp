@@ -34,6 +34,7 @@ $(document)
     var $thisBtn = $(this)
         $thisDeviceId= $thisBtn.data("device-id")
         $thisDeviceGw= $thisBtn.data("device-gw")
+    console.log('power on')
     console.log('device_id= '+$thisDeviceId + ' gw_id = ' + $thisDeviceGw)
 
     $.ajax({
@@ -57,8 +58,9 @@ $(document)
     var $thisBtn = $(this)
         $thisDeviceId= $thisBtn.data("device-id")
         $thisDeviceGw= $thisBtn.data("device-gw")
-    console.log('device_id= '+$thisDeviceId + ' gw_id = ' + $thisDeviceGw)
-  $.ajax({
+        console.log('power off')
+        console.log('device_id= '+$thisDeviceId + ' gw_id = ' + $thisDeviceGw)
+        $.ajax({
                 url: "http://140.138.150.52/task_manager/v2/attribute",             
                 data: {
                         service_id: 60,

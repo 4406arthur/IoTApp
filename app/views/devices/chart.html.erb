@@ -1,4 +1,4 @@
-<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
 <div class="row">
     <aside class="col-md-3">
       <section>
@@ -13,7 +13,7 @@
       <div class="center lead">
         <% @devices.each do |device| %>
         <em><%= device.name %></em>
-        <%= line_chart device.sense_values.group_by_day(:created_at).average(:data), library: {backgroundColor: "#eee"} %>
+        <%= line_chart device.sense_values.group_by_hour(:created_at).average(:data), library: {backgroundColor: "#eee"} %>
         <%end%>
       </div>
     </div>

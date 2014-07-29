@@ -45,9 +45,9 @@ class SwotUsersController < ApplicationController
   private
 
     def set_user_session
-      if params[:gw_id] && params[:fb_id]
-        session[:fb_id] = params[:fb_id]
-        session[:gw_id] = params[:gw_id]
+      if params[:gwid] && params[:fbid]
+        session[:fb_id] = params[:fbid]
+        session[:gw_id] = params[:gwid]
       else
         if !session[:fb_id] && !session[:gw_id]
           render :text => "Login Swot first"

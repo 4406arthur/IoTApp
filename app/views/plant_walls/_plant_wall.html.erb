@@ -2,7 +2,7 @@
     <div class="panel panel-default">
       <div class="panel-heading"> 
         <h3 class="panel-title">
-        <%= link_to(plant_wall.name, plant_wall_suggestions_path(plant_wall)) %> 
+        <%= link_to(plant_wall.name, plant_wall_suggestions_path(plant_wall), :class => "btn btn-warning active") %> 
        
         <%= link_to("Edit", edit_plant_wall_path(plant_wall), :class => "btn btn-info btn-xs pull-right" ) %>
         <%= link_to("Bind_Device", new_plant_wall_device_path(plant_wall), :class => "btn btn-success btn-xs pull-right", :confirm => "are you sure?") %>
