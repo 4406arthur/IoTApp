@@ -4,7 +4,7 @@
       <%= link_to("Delete", device_path(device), :class => "btn btn-danger btn-xs pull-right",:method => :delete, :remote => true, data: { confirm: "You sure?" }) %> 
     </div>
           <%# it for ip cam cmd panel%>
-     <%if device.category == '61' || device.category == '38'   %>
+     <%if device.category == '60' %>
         <div class="panel-body text-center cmd">   
           <btn data-device-id=<%=device.device_id%> data-device-gw=<%=device.gw_id%> type=button class="btn btn-default on">
                 <i class="fa fa-lightbulb-o"></i> On

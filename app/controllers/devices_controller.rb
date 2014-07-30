@@ -18,7 +18,7 @@ class DevicesController < ApplicationController
   end
 
   def pic
-    @images = Dir.glob("app/assets/images/slide/*.jpg")
+    @images = Dir.glob("app/assets/images/slide/"+@wall.id.to_s()+"/*.jpg")
   end
 
   def cam

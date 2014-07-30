@@ -11,7 +11,7 @@
       <h3>Ipcam Capture</h3>
       <div class="center lead">
         <% @images.each do |image| %>
-   			<%= image_tag "slide/#{image.split('/').last}" %>
+   			<%= image_tag "slide/"+@wall.id.to_s()+"/#{image.split('/').last}" %>
  		    <% end %>
       </div>
     </div>

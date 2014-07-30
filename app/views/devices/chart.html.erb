@@ -12,8 +12,10 @@
       <h3>Environment data info</h3>
       <div class="center lead">
         <% @devices.each do |device| %>
-        <em><%= device.name %></em>
-        <%= line_chart device.sense_values.group_by_hour(:created_at).average(:data), library: {backgroundColor: "#eee"} %>
+          <% if device.category != '60' && device.category != '61' %>
+            <em><%= device.name %></em>
+            <%= line_chart device.sense_values.group_by_hour(:created_at).average(:data), library: {backgroundColor: "#eee"} %>
+          <% end %>
         <%end%>
       </div>
     </div>
