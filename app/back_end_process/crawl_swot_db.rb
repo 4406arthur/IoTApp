@@ -99,7 +99,9 @@ loop do
     SwotUser.all.each do |user|
       walls = user.plant_walls
       walls.each do |wall|
+        #parse_msg(val)
         msg = throw_event
+
         Suggestion.create(:content => msg, :plant_wall => wall)
       end
     end
