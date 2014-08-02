@@ -2,6 +2,7 @@ require 'rubygems'
 require 'active_record'
 require 'net/http'
 require 'json'
+require 'composite_primary_keys'
 gem 'mysql2'
 
 ActiveRecord::Base.establish_connection(
@@ -33,7 +34,7 @@ end
 
 class Device < ActiveRecord::Base
   belongs_to :plant_wall
-  has_many :sense_values ,dependent: :destroy
+  has_many :sense_values , :class_name => 'SenseValue' ,:foreign_key => [:device_id, :gw_id],dependent: :destroy
   
   self.primary_key = [:device_id, :gw_id]
 end
@@ -92,7 +93,29 @@ def get_pic(gw_id, device_id, wall_id)
   f.close
   puts 'get '+ wall_id.to_s()+(Time.now.to_f * 1000).to_s+".jpg"
 
-  
+end
+
+def suggestion(val, device)
+  #same value probelm
+  #old_value = device.sense_values.last.data
+  #if old_value.to_f() == val.to_f()
+    #puts 'arduino POST error'
+    #return meg = ' Your Arduino ethernet maybe occure a problem, your ' + device.name + ' get same value !'
+  if device.category == '55'
+    return meg = 'the indoor temperature is to high' if val.to_f() > 28
+    return meg = 'the indoor temperature is to low' if val.to_f() < 20
+  elsif device.category == '56'
+    return meg = 'the humidity is to high' if val.to_f() > 70
+    return meg = 'the humidity is to low' if val.to_f() < 60
+  elsif device.category == '57'
+    return meg = 'the water PH is to high' if val.to_f() > 6.5
+    return meg = 'the water PH is to low' if val.to_f() < 5
+  elsif device.category == '58'
+    return meg = 'the water temperature is to high' if val.to_f() > 25
+  elsif device.category == '59'
+    return meg = 'level of water warning' if val.to_f() < 700
+  end  
+    
 end
 
 
@@ -120,8 +143,11 @@ loop do
           #for test
           if device.category == '55' || device.category == '56'|| device.category == '57' || device.category == '58' || device.category =='59'
             val = get_value(device.gw_id, device.device_id)
+            msg= suggestion(val, device)
             #val = get_test
-    		    SenseValue.create(:data => val, :device_id => device.device_id, :gw_id => device.gw_id)
+            SenseValue.create(:data => val, :device_id => device.device_id, :gw_id => device.gw_id)
+            Suggestion.create(:content => msg, :plant_wall => wall)
+
           elsif device.category == '61'
             get_pic(device.gw_id, device.device_id, wall.id)  
           end
@@ -129,17 +155,7 @@ loop do
       end
     end
    
-    #for test throw_event
-    SwotUser.all.each do |user|
-      walls = user.plant_walls
-      walls.each do |wall|
-        #parse_msg(val)
-        msg = throw_event
-
-        Suggestion.create(:content => msg, :plant_wall => wall)
-      end
-    end
 
 
-    sleep(1.hours)
+    sleep(60.minutes)
 end
