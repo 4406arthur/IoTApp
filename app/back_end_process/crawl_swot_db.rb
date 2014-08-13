@@ -91,7 +91,7 @@ def get_pic(gw_id, device_id, wall_id)
   f = File.new("/home/lab1707/IoTApp/app/assets/images/slide/"+wall_id.to_s()+'/'+(Time.now.to_f * 1000).to_s+".jpg","w")
   f.write(res)
   f.close
-  puts 'get '+ wall_id.to_s()+(Time.now.to_f * 1000).to_s+".jpg"
+  puts 'get pic on wall: '+ wall_id.to_s()+ ' time stamp:  '+(Time.now.to_f * 1000).to_s+".jpg"
 
 end
 
