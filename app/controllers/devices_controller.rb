@@ -17,8 +17,12 @@ class DevicesController < ApplicationController
     #render json: current_user.devices.group(:name).group_by_day(:created_at).count.chart_json
   end
 
+  #def pic
+   # @images = Dir.glob("app/assets/images/slide/"+@wall.id.to_s()+"/*.jpg")
+  #end
+
   def pic
-    @images = Dir.glob("app/assets/images/slide/"+@wall.id.to_s()+"/*.jpg")
+    @cams = @wall.devices.where(:category => 61)
   end
 
   def cam

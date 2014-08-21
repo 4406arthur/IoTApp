@@ -10,9 +10,13 @@
     <div class="col-md-8">
       <h3>Ipcam Capture</h3>
       <div class="center lead">
-        <% @images.each do |image| %>
-   			<%= image_tag "slide/"+@wall.id.to_s()+"/#{image.split('/').last}" %>
- 		    <% end %>
+        <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
+        <% @cams.each do |cam| %>
+          <% cam.sense_values.each do |image| %>
+            <%= image_tag(image.description, :data => { :gallery => "gallery" }, :class => "img-thumbnail" ) %>
+            <% end %>
+        <% end %>
+        </div>
       </div>
     </div>
 </div>

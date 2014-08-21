@@ -87,11 +87,16 @@ def get_pic(gw_id, device_id, wall_id)
   res =  Net::HTTP.get(uri)
 
   directory_name = "/home/lab1707/IoTApp/app/assets/images/slide/"+wall_id.to_s()
-  Dir.mkdir(directory_name) unless File.exists?(directory_name) 
-  f = File.new("/home/lab1707/IoTApp/app/assets/images/slide/"+wall_id.to_s()+'/'+(Time.now.to_f * 1000).to_s+".jpg","w")
+  Dir.mkdir(directory_name) unless File.exists?(directory_name)
+  time_stamp=(Time.now.to_f*1000).to_s
+  path = "/home/lab1707/IoTApp/app/assets/images/slide/"+wall_id.to_s()+'/'+time_stamp+".jpg"
+  f = File.new(path,"w")
   f.write(res)
   f.close
   puts 'get pic on wall: '+ wall_id.to_s()+ ' time stamp:  '+(Time.now.to_f * 1000).to_s+".jpg"
+  path = "slide/"+wall_id.to_s()+'/'+time_stamp+".jpg"
+
+  return path
 
 end
 
@@ -134,12 +139,11 @@ end
 loop do
     SwotUser.all.each do |u|
       fb_id = u.fb_id
-    	gw_id = u.gw_id
+      gw_id = u.gw_id
       walls = u.plant_walls
       walls.each do |wall|
     	  devices = wall.devices
-    	  devices.each do |device|
-    		  
+    	  devices.each do |device|		  
           #for test
           if device.category == '55' || device.category == '56'|| device.category == '57' || device.category == '58' || device.category =='59'
             val = get_value(device.gw_id, device.device_id)
@@ -149,7 +153,7 @@ loop do
             Suggestion.create(:content => msg, :plant_wall => wall)
 
           elsif device.category == '61'
-            get_pic(device.gw_id, device.device_id, wall.id)  
+            SenseValue.create(:description => get_pic(device.gw_id, device.device_id, wall.id), :device_id => device.device_id, :gw_id => device.gw_id )
           end
         end
       end
