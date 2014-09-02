@@ -14,7 +14,7 @@
         <% @devices.each do |device| %>
           <% if device.category != '60' && device.category != '61' %>
             <em><%= device.name %></em>
-            <%= line_chart device.sense_values.group_by_hour(:created_at).average(:data), library: {backgroundColor: "#eee"} %>
+            <%= line_chart device.sense_values.group_by_day(:created_at).average(:data), library: {backgroundColor: "#eee"} %>
           <% end %>
         <%end%>
       </div>

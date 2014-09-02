@@ -29,6 +29,10 @@ class DevicesController < ApplicationController
     
   end
 
+  def dash
+    @devices = @wall.devices
+  end
+
 
 
   def destroy

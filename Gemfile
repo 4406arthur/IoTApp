@@ -3,9 +3,11 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'dashing-rails'
+gem 'puma'
 gem 'font-awesome-sass'
 gem 'composite_primary_keys'
-gem 'rails-gallery'
+gem 'bootstrap-addons-rails'
 gem 'groupdate'
 gem 'chartkick'
 gem 'mysql2'

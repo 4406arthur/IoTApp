@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Dashing::Engine, at: Dashing.config.engine_path
    resources :swot_users, :shallow => true do
     resources :plant_walls do
       resources :suggestions
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   match '/plant_walls/:plant_wall_id/chart' => 'devices#chart', :as => :chart, via: 'get'
   match '/plant_walls/:plant_wall_id/pic' => 'devices#pic', :as => :pic, via: 'get'
   match '/plant_walls/:plant_wall_id/cam' => 'devices#cam', :as => :cam, via: 'get'
+  match '/plant_walls/:plant_wall_id/dash' => 'devices#dash', :as => :dash, via: 'get'
  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

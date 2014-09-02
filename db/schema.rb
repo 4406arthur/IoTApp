@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728045014) do
+ActiveRecord::Schema.define(version: 20140820114629) do
 
   create_table "devices", id: false, force: true do |t|
     t.integer "device_id",     default: 0, null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140728045014) do
     t.integer "plant_wall_id"
     t.string  "name"
     t.string  "category"
+    t.string  "path"
   end
 
   add_index "devices", ["device_id", "gw_id"], name: "index_devices_on_device_id_and_gw_id", using: :btree
