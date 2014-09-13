@@ -10,6 +10,10 @@
     </aside>
     <div class="col-md-8">
       <h3>Environment data info</h3>
+       <%= bootstrap_form_tag url:'/chart' do |f| %>
+          <%= f.date_field :select %>
+          <%= f.submit "Search", class: "btn btn-success"%>
+        <% end %>
       <div class="center lead">
         <% @devices.each do |device| %>
           <% if device.category != '60' && device.category != '61' %>

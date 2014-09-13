@@ -63,7 +63,15 @@ def get_value(gw_id, device_id)
 
   json_data = res.body if res.is_a?(Net::HTTPSuccess)
   json_data =JSON.parse(json_data)
+
+  if(json_data["error"] == true)
+    puts 'gw network error'
+    return 
+  end
+
   device = json_data["device"]
+  ##might cause NoMethodError
+ 
   puts device.first["DATA"]
   return device.first["DATA"]
 
@@ -78,8 +86,14 @@ def get_pic(gw_id, device_id, wall_id)
 
   json_data = res.body if res.is_a?(Net::HTTPSuccess)
   json_data =JSON.parse(json_data)
-  
 
+
+  if(json_data["error"] == true)
+    puts 'gw network error'
+    return 
+  end
+  
+   
   device = json_data["device"]
   puts device.first["DATA"]
 
@@ -119,6 +133,9 @@ def suggestion(val, device)
     return meg = 'the water temperature is to high' if val.to_f() > 25
   elsif device.category == '59'
     return meg = 'level of water warning' if val.to_f() < 700
+   elsif device.category == '62'
+    return meg = 'EC of water is to high' if val.to_f() > 2.0 
+    return meg = 'EC of water is to low' if val.to_f() < 1.8
   end  
     
 end
@@ -145,7 +162,7 @@ loop do
     	  devices = wall.devices
     	  devices.each do |device|		  
           #for test
-          if device.category == '55' || device.category == '56'|| device.category == '57' || device.category == '58' || device.category =='59'
+          if device.category == '55' || device.category == '56'|| device.category == '57' || device.category == '58' || device.category =='59' || device.category == '62'
             val = get_value(device.gw_id, device.device_id)
             msg= suggestion(val, device)
             #val = get_test

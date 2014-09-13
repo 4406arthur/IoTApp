@@ -33,6 +33,7 @@ class DevicesController < ApplicationController
     @devices = @wall.devices
   end
 
+ 
 
 
   def destroy

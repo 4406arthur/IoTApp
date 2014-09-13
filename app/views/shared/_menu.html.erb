@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-menu" >
       <ul class="nav  nav-pills nav-stacked">
 		<li class="active"><%= link_to "Suggestion",  plant_wall_suggestions_path(@wall) %> </li>
-    <li class="active"><%= link_to "Realtime-Dashboard", dash_path(:plant_wall_id => @wall) %> </li>
+    <li class="active"><%= link_to "Realtime-Dashboard", dash_path(:plant_wall_id => @wall)  %> </li>
 		<li class="active"><%= link_to "Chart_info", chart_path(:plant_wall_id => @wall) %></li>
 		<li class="active"><%= link_to "Plant_view", pic_path(:plant_wall_id => @wall) %></li>
 		<li class="active"><%= link_to "Live_view", cam_path(:plant_wall_id => @wall) %></li>

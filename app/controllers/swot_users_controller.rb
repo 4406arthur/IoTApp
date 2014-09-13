@@ -2,6 +2,7 @@ class SwotUsersController < ApplicationController
   before_action :set_user_session
   before_action :current_user
 
+
   def show
     if !current_user
       @new_user = SwotUser.create(:gw_id => session[:gw_id], :fb_id => session[:fb_id])

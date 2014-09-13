@@ -9,8 +9,22 @@
     </aside>
     <div class="col-md-8">
       <h3>Dashboard</h3>
-      <div class="center lead">
-        <%= render 'dashing/dashboards/sample' %>
-      </div>
-    </div>
+        <li class="list-group-item list-group-item-info">
+          <div class="panel panel-default">
+          <% @devices.each do |device| %>
+            <% if device.category.to_i() != 60 && device.category.to_i() != 61 %>
+              <div class="panel-heading"> <%= device.name %> 
+                <i class="fa fa-tachometer fa-5x pull-right"></i>
+                <div class="panel-body text-center">
+                  <%= get_value(device.gw_id,device.device_id) %>
+                </div>
+            </div>
+            <%end%>
+          <%end%>
+          </div>
+        </li>
+    </div> 
 </div>
+
+
+
