@@ -10,15 +10,27 @@
     </aside>
     <div class="col-md-8">
       <h3>Environment data info</h3>
-       <%= bootstrap_form_tag url:'/chart' do |f| %>
-          <%= f.date_field :select %>
-          <%= f.submit "Search", class: "btn btn-success"%>
-        <% end %>
+       <%= bootstrap_form_tag url:'/find', method: 'get' do |f| %>
+          <%= f.date_field :date %>
+          <%= f.text_field :plant_wall_id, value: @wall.id %>
+          <%= f.submit "search", class: "btn btn-success"%>
+       <% end %>
+
+       <br><br><br>
+      
+
       <div class="center lead">
+        <%= @date %>
+        <br><br>
         <% @devices.each do |device| %>
           <% if device.category != '60' && device.category != '61' %>
             <em><%= device.name %></em>
-            <%= line_chart device.sense_values.group_by_day(:created_at).average(:data), library: {backgroundColor: "#eee"} %>
+          
+            <% if @date %>
+              <%= line_chart device.sense_values.where('created_at BETWEEN ? AND ?', @date.beginning_of_day, @date.end_of_day).all.group_by_hour(:created_at).average(:data), library: {backgroundColor: "#eee"} %>
+            <% else %>
+              <%= line_chart device.sense_values.group_by_day(:created_at).average(:data), library: {backgroundColor: "#eee"} %>
+            <% end %>
           <% end %>
         <%end%>
       </div>

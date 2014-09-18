@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   match '/plant_walls/:plant_wall_id/pic' => 'devices#pic', :as => :pic, via: 'get'
   match '/plant_walls/:plant_wall_id/cam' => 'devices#cam', :as => :cam, via: 'get'
   match '/plant_walls/:plant_wall_id/dash' => 'devices#dash', :as => :dash, via: 'get'
- 
+  get '/find' => 'devices#chart'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

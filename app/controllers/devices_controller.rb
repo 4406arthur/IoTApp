@@ -14,6 +14,9 @@ class DevicesController < ApplicationController
 
   def chart
     @devices = @wall.devices
+    if( params[:date] )
+      @date = params[:date].to_date()
+    end
     #render json: current_user.devices.group(:name).group_by_day(:created_at).count.chart_json
   end
 

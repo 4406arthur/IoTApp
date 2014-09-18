@@ -26,6 +26,7 @@
 $(function()
 {
     $('.cmd').hide();
+    $('#plant_wall_id').hide();
 });
 
 $(document)

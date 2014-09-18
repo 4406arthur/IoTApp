@@ -6,9 +6,17 @@ module DevicesHelper
     uri.query = URI.encode_www_form(params)
 
     res = Net::HTTP.get_response(uri)
+    
+    
 
     json_data = res.body if res.is_a?(Net::HTTPSuccess)
     json_data =JSON.parse(json_data)
+    
+    if(json_data["error"] == true)
+      puts 'gw network error'
+      return
+    end
+
     device = json_data["device"]
     puts device.first["DATA"]
     return device.first["DATA"]
