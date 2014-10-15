@@ -23,7 +23,7 @@
         <%= @date %>
         <br><br>
         <% @devices.each do |device| %>
-          <% if device.category != '60' && device.category != '61' %>
+          <% if device.category != '60' && device.category != '61'&& device.category != '73' && device.category != '75'  %>
             <em><%= device.name %></em>
           
             <% if @date %>

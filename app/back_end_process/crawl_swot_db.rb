@@ -9,7 +9,7 @@ ActiveRecord::Base.establish_connection(
   :adapter  => "mysql2",
   :host     => "localhost",
   :username => "root",
-  :password => "1707",
+  :password => "itismylife7",
   :database => "plantfactory"
 )
 
@@ -152,31 +152,38 @@ def throw_event
   return 'sensor not working'
 end
 
-
-loop do
+count = 1
+loop do 
+    puts  "pass:"  + count.to_s()
     SwotUser.all.each do |u|
       fb_id = u.fb_id
       gw_id = u.gw_id
       walls = u.plant_walls
       walls.each do |wall|
-    	  devices = wall.devices
-    	  devices.each do |device|		  
+        devices = wall.devices
+        devices.each do |device|      
           #for test
           if device.category == '55' || device.category == '56'|| device.category == '57' || device.category == '58' || device.category =='59' || device.category == '62'
             val = get_value(device.gw_id, device.device_id)
             msg= suggestion(val, device)
             #val = get_test
             SenseValue.create(:data => val, :device_id => device.device_id, :gw_id => device.gw_id)
-            Suggestion.create(:content => msg, :plant_wall => wall)
-
+            if (count == 30 || count == 60 )
+              Suggestion.create(:content => msg, :plant_wall => wall)
+            end  
           elsif device.category == '61'
-            SenseValue.create(:description => get_pic(device.gw_id, device.device_id, wall.id), :device_id => device.device_id, :gw_id => device.gw_id )
+            if (count == 60 )
+              SenseValue.create(:description => get_pic(device.gw_id, device.device_id, wall.id), :device_id => device.device_id, :gw_id => device.gw_id )
+            end
           end
         end
       end
     end
-   
+    
+    if count == 60
+      count = 0
+    end
 
-
-    sleep(60.minutes)
+    count += 1
+    sleep(100.seconds)
 end

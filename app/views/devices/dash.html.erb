@@ -12,7 +12,7 @@
         <li class="list-group-item list-group-item-info">
           <div class="panel panel-default">
           <% @devices.each do |device| %>
-            <% if device.category.to_i() != 60 && device.category.to_i() != 61 %>
+            <% if device.category.to_i() != 60 && device.category.to_i() != 61 && device.category.to_i() != 73 && device.category.to_i() != 75 %>
               <div class="panel-heading"> <%= device.name %> 
                 <i class="fa fa-tachometer fa-5x pull-right"></i>
                 <div class="panel-body text-center">
