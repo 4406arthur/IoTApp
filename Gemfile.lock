@@ -47,6 +47,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    colorbox-rails (0.1.2)
+      jquery-rails
+      rails (>= 3.1.1)
     composite_primary_keys (7.0.2)
       activerecord (~> 4.1.0)
     connection_pool (2.0.0)
@@ -160,6 +163,7 @@ DEPENDENCIES
   bootstrap_form
   chartkick
   coffee-rails (~> 4.0.0)
+  colorbox-rails
   composite_primary_keys
   dashing-rails
   faker (= 1.1.2)

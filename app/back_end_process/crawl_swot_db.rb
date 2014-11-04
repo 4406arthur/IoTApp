@@ -100,10 +100,10 @@ def get_pic(gw_id, device_id, wall_id)
   uri = URI(device.first["DATA"])
   res =  Net::HTTP.get(uri)
 
-  directory_name = "/home/lab1707/IoTApp/app/assets/images/slide/"+wall_id.to_s()
+  directory_name = "/home/arthurma/IoTApp/app/assets/images/slide/"+wall_id.to_s()
   Dir.mkdir(directory_name) unless File.exists?(directory_name)
   time_stamp=(Time.now.to_f*1000).to_s
-  path = "/home/lab1707/IoTApp/app/assets/images/slide/"+wall_id.to_s()+'/'+time_stamp+".jpg"
+  path = "/home/arthurma/IoTApp/app/assets/images/slide/"+wall_id.to_s()+'/'+time_stamp+".jpg"
   f = File.new(path,"w")
   f.write(res)
   f.close

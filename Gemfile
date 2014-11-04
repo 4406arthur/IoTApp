@@ -16,6 +16,7 @@ gem 'sass', '~> 3.2.0'
 gem 'rails', '4.1.0'
 gem 'bootstrap-sass','3.1.1'
 gem 'sprockets','2.11.0'
+gem 'colorbox-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets

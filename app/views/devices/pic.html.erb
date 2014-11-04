@@ -13,10 +13,26 @@
         <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
         <% @cams.each do |cam| %>
           <% cam.sense_values.each do |image| %>
-            <%= image_tag(image.description, :data => { :gallery => "gallery" }, :class => "img-thumbnail" ) %>
-            <% end %>
+          <a class="gallery" href="/assets/<%= image.description %>"><%= image_tag(image.description, :data => { :gallery => "gallery" }, :class => "img-thumbnail" ) %></a>
+          <% end %>
         <% end %>
+
         </div>
       </div>
     </div>
 </div>
+
+
+<script>
+$('a.gallery').colorbox({
+    rel:'gal',
+    slideshow: true,
+    slideshowAuto: true,
+    slideshowSpeed: 300/2,
+    closeButton: false,
+    onLoad: function () {
+        $('#cboxPrevious, #cboxNext').remove();
+    }
+});
+</script>
+
