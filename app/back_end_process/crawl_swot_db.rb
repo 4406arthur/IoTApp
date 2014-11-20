@@ -52,7 +52,10 @@ class SenseValue < ActiveRecord::Base
 end
 
 
-
+def set_attribute(gw_id, device_id, value)
+  uri = URI('http://140.138.150.52/task_manager/v2/attribute')
+  res = Net::HTTP.post_form(uri, 'service_id' => 60, 'service_secret' => 'a98fa6a13fe2ba98c28fa52dabcd9acd', 'gw_id' => gw_id, 'device_id' => device_id, 'name' => '3', 'value' => value)
+end
 
 def get_value(gw_id, device_id)
   uri = URI('http://140.138.150.52/task_manager/v2/device')
@@ -161,12 +164,10 @@ loop do
       walls = u.plant_walls
       walls.each do |wall|
         devices = wall.devices
-        devices.each do |device|      
-          #for test
+        devices.each do |device|
           if device.category == '55' || device.category == '56'|| device.category == '57' || device.category == '58' || device.category =='59' || device.category == '62'
             val = get_value(device.gw_id, device.device_id)
             msg= suggestion(val, device)
-            #val = get_test
             SenseValue.create(:data => val, :device_id => device.device_id, :gw_id => device.gw_id)
             if (count == 30 || count == 60 )
               Suggestion.create(:content => msg, :plant_wall => wall)
@@ -175,15 +176,21 @@ loop do
             if (count == 60 )
               SenseValue.create(:description => get_pic(device.gw_id, device.device_id, wall.id), :device_id => device.device_id, :gw_id => device.gw_id )
             end
+          elsif device.category == '60'
+            time = Time.new
+            if (time.hour == 20)
+              set_attribute(device.gw_id, device.device_id,0)
+            elsif (time.hour == 8)
+              set_attribute(device.gw_id, device.device_id,1)
+            end
           end
         end
       end
     end
-    
     if count == 60
       count = 0
     end
 
     count += 1
-    sleep(100.seconds)
+    sleep(60.seconds)
 end
