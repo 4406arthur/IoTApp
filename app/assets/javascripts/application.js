@@ -18,21 +18,48 @@
 //= require bootstrap/datepicker
 //= require bootstrap/load-image.min
 //= require bootstrap/image-gallery.min
-//= require turbolinks
+//= require jquery.colorbox
 //= require_tree .
 
 
-$(function()
-{
-    $('.cmd').hide();
-    $('#plant_wall_id').hide();
-});
+
+function fuk () {
+    var $thisBtn = $(this)
+        $thisDeviceId= $thisBtn.data("device-id")
+        $thisDeviceGw= $thisBtn.data("device-gw")
+
+        $.ajax({
+                url: "http://140.138.150.52/task_manager/v2/attribute",             
+                data: {
+                        service_id: 60,
+                        service_secret: 'a98fa6a13fe2ba98c28fa52dabcd9acd',
+                        gw_id: $thisDeviceGw ,
+                        device_id: $thisDeviceId                      
+                       },
+                type: 'GET' 
+        }).done(function(rep) {
+            console.log(rep.devices[0].attribute_value)
+            if (rep.devices[0].attribute_value == 1) {
+                $thisBtn.find('i').removeClass("fa-toggle-off").addClass("fa-toggle-on").html(' on');
+                $thisBtn.find('i').css('color', 'green')
+            }
+            else {
+                $thisBtn.find('i').removeClass("fa-toggle-on").addClass("fa-toggle-off").html(' off');
+                $thisBtn.find('i').css('color', 'black')
+            }
+
+        });
+}
 
 $(document)
-.on('click', '.list-group-item-info', function (e) {   
-    $(this).find('.cmd').show();
-    //$(this).insertAfter($('<div>ghcgfhnffh</div>').slideIn());
+.ready( function() {
+    
+    $(".on").each(fuk);
+
+     
+
 })
+
 
 
 .on('click', '.on', function (e) {
@@ -40,49 +67,25 @@ $(document)
     var $thisBtn = $(this)
         $thisDeviceId= $thisBtn.data("device-id")
         $thisDeviceGw= $thisBtn.data("device-gw")
-    console.log('power on')
-    console.log('device_id= '+$thisDeviceId + ' gw_id = ' + $thisDeviceGw)
 
     $.ajax({
-                url: "http://140.138.150.52/task_manager/v2/attribute",             
-                data: {
-                        service_id: 60,
-                        service_secret: 'a98fa6a13fe2ba98c28fa52dabcd9acd',
-                        gw_id: $thisDeviceGw ,
-                        device_id: $thisDeviceId,
-                        name: 3,
-                        value: 1
-                       },
-                type: 'POST' 
-        }).done(function(rep) {
-                console.log('power on')
+        url: "http://140.138.150.52/task_manager/v2/attribute",             
+        data: {
+            service_id: 60,
+            service_secret: 'a98fa6a13fe2ba98c28fa52dabcd9acd',
+            gw_id: $thisDeviceGw ,
+            device_id: $thisDeviceId,
+            name: 3,
+            value: $thisBtn.find('i').hasClass('fa-toggle-on') ? 0 : 1
+        },
+        type: 'POST'
+    }).then(function (rep) {
+        console.log('avoided')
+    }, function () {
+        fuk.apply(this);
+    }.bind(this));
 
-        });
 })
-
-.on('click', '.off', function (e) {
-    var $thisBtn = $(this)
-        $thisDeviceId= $thisBtn.data("device-id")
-        $thisDeviceGw= $thisBtn.data("device-gw")
-        console.log('power off')
-        console.log('device_id= '+$thisDeviceId + ' gw_id = ' + $thisDeviceGw)
-        $.ajax({
-                url: "http://140.138.150.52/task_manager/v2/attribute",             
-                data: {
-                        service_id: 60,
-                        service_secret: 'a98fa6a13fe2ba98c28fa52dabcd9acd',
-                        gw_id: $thisDeviceGw,
-                        device_id: $thisDeviceId,
-                        name: 3,
-                        value: 0
-                       },
-                type: 'POST' 
-        }).done(function(rep) {
-                console.log('power off')
-
-        });
-})
-
 
 
 .on('click','.fa-arrow-left', function (e) { 

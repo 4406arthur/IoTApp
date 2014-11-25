@@ -13,6 +13,7 @@
  *= require rails_bootstrap_forms
  *= require_tree .
  *= require_self
+ *= require jquery.colorbox-example3
  *= require font-awesome
 */
 background-image: url('/assets/dep.jpg');

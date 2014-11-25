@@ -24,15 +24,17 @@
 
 
 <script>
-$('a.gallery').colorbox({
-    rel:'gal',
-    slideshow: true,
-    slideshowAuto: true,
-    slideshowSpeed: 200,
-    closeButton: false,
-    onLoad: function () {
-        $('#cboxPrevious, #cboxNext').remove();
-    }
-});
+$(function(){
+    $('a.gallery').colorbox({
+        rel:'gal',
+        slideshow: true,
+        slideshowAuto: true,
+        slideshowSpeed: 200,
+        closeButton: false,
+        onLoad: function () {
+            $('#cboxPrevious, #cboxNext').remove();
+        }
+    });
+})
 </script>
 

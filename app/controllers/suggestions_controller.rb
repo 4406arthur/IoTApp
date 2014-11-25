@@ -23,7 +23,8 @@ before_action :current_wall, except: :destroy
   end
 
   def index
-    @feed_items = @wall.feed.paginate(page: params[:page])
+    @feed_items = @wall.feed.paginate(page: params[:page]).order('created_at DESC')
+
   end
 
   private
