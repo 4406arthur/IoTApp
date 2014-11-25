@@ -20,7 +20,7 @@ module SwotUserHelper
   end
 
   def swot_current_user
-    @swot_current_user ||= SwotUser.find_by(fb_id: session[:fb_id])
+    @swot_current_user ||= SwotUser.find_by(gw_id: session[:gw_id])
   end
 
   def swot_current_user?(user)
