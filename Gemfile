@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'bootstrap_form'
-gem 'dashing-rails'
 gem 'font-awesome-rails'
 gem 'composite_primary_keys'
 gem 'bootstrap-addons-rails'
@@ -15,7 +14,7 @@ gem 'sass', '~> 3.2.0'
 gem 'rails', '4.1.0'
 gem 'bootstrap-sass','3.1.1'
 gem 'sprockets','2.11.0'
-
+gem 'passenger'
 gem 'jquery-colorbox-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

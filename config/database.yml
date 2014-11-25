@@ -24,4 +24,5 @@ test:
 
 production:
   <<: *default
-  database: production_plant
+  #database: production_plant
+  database: plantfactory

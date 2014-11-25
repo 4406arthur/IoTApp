@@ -10,6 +10,7 @@ class SwotUsersController < ApplicationController
     else
       @plant_walls= @user.plant_walls
     end
+
   end
 
   def edit

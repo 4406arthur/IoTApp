@@ -11,6 +11,8 @@
 // about supported directives.
 //
 
+
+//= require turbolinks
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
@@ -52,7 +54,7 @@ function fuk () {
 }
 
 $(document)
-.ready( function() {
+.on('page:load' ,function() {
     
     $(".on").each(fuk);
 
