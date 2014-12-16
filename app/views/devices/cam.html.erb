@@ -1,3 +1,7 @@
+<% @stream.each do |stream| %>
+  <% @file = stream.path %>
+<% end %>
+
 <div class="row">
     <aside class="col-md-3">
       <section>
@@ -14,7 +18,7 @@
         <div id='playermYyDVgtanKRI'></div>
         <script type='text/javascript'>
           jwplayer('playermYyDVgtanKRI').setup({
-            file: 'http://140.138.150.69:80/h264.flv?cidx=201304507',
+            file: '<%= @file %>',
             image: '//www.longtailvideo.com/content/images/jw-player/lWMJeVvV-876.jpg',
             width: '640',
             height: '360'
@@ -23,6 +27,7 @@
 
       </div>
       <h3>Control Panel</h3>
+  
       <div style="font-size: 44px;">
       <i class="fa fa-arrow-left"></i>
       <i class="fa fa-arrow-up"></i>

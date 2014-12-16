@@ -1,8 +1,10 @@
 class PlantWallsController < ApplicationController
-  before_action :current_user, only: [:new, :create ]
-  before_action :current_wall, only: [:edit,:update,:destroy]
+  before_action :current_user, only: [:new, :create, :listDevice]
+  before_action :current_wall, only: [:edit,:update, :destroy]
+  
   def index
   end
+
 
   def show
   end
@@ -23,6 +25,18 @@ class PlantWallsController < ApplicationController
  
   def edit
 
+  end
+
+  def listDevice
+    arr = Array.new
+    @walls = @user.plant_walls
+    @walls.each do |wall|
+      if wall.devices 
+        arr << wall.devices
+      end
+    end
+    render json:arr
+   
   end
 
   def update

@@ -8,8 +8,9 @@ class DevicesController < ApplicationController
     render :nothing => true
   end
   
-  def index
+  def index    
     @devices = @wall.devices
+    #render json: @devices
   end
 
   def chart
@@ -29,6 +30,7 @@ class DevicesController < ApplicationController
   end
 
   def cam
+    @stream = @wall.devices.where(:category => 61)
     
   end
 
