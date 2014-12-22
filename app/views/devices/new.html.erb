@@ -36,7 +36,7 @@
                 type:  "GET",
                 dataType: "JSON",
                }).done(function(rep) {
-      
+        
 
                  rep.devices.forEach(function (device) {
                   if (ref.indexOf(parseInt(device.shg_device_id,10)) === -1) {

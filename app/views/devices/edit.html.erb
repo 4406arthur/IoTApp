@@ -1,0 +1,23 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <h1>
+       
+
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h3> <%= 'Add Stream Source' %> </h3>
+    <div class="center lead">
+      <%= form_for @device do |f| %>
+      
+        <%= f.label :"IPcam Stream Source" %>
+        <%= f.text_field :path, :class => "input-xxsmall"%>
+
+
+        <%= f.submit "Submit", :class => "btn btn-primary" %>
+      <% end %>
+    </div> 
+  </div>
+</div>

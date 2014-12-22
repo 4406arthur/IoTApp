@@ -1,0 +1,2 @@
+module HarvestPointsHelper
+end

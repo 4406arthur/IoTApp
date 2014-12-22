@@ -1,6 +1,7 @@
 class PlantWall < ActiveRecord::Base
   has_many :suggestions, dependent: :destroy
   has_many :devices, dependent: :destroy
+  has_many :harvest_points, dependent: :destroy
   belongs_to :swot_user
 
   def feed

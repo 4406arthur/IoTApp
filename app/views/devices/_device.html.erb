@@ -10,9 +10,12 @@
                 <i class="fa fa-toggle-on "></i>
 
           </btn>
-
-
-
         </div>
+          <%# for ip cam stream file %>
+     <%elsif device.category == '61' %>
+        <div class="panel-body text-center">
+          <%= link_to("Stream source", edit_device_path(device) , :class => "btn btn-warning ",:method => :get ) %>
+
+        </div>    
       <% end %>
 </li>

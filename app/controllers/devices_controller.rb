@@ -1,6 +1,7 @@
 class DevicesController < ApplicationController
-  before_action :current_wall, except: :destroy
-  def new  
+  before_action :current_wall, except: [:destroy, :edit, :update]
+  def edit
+    @device = Device.find(params[:id].split(','))
   end
 
   def create
@@ -12,6 +13,17 @@ class DevicesController < ApplicationController
     @devices = @wall.devices
     #render json: @devices
   end
+
+  def update
+    @device = Device.find(params[:id].split(','))
+    if @device.update(device_params)
+      redirect_to plant_wall_devices_path(@wall)
+    else
+      render :edit
+    end
+
+  end
+
 
   def chart
     @devices = @wall.devices
@@ -58,6 +70,10 @@ class DevicesController < ApplicationController
   private 
     def current_wall
       @wall = PlantWall.find(params[:plant_wall_id])
+    end
+
+    def device_params
+      params.require(:device).permit(:path)
     end
   
 end
