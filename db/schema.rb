@@ -11,24 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222075107) do
+ActiveRecord::Schema.define(version: 20141223084014) do
 
-  create_table "devices", id: false, force: true do |t|
-    t.integer "device_id",     default: 0, null: false
-    t.integer "gw_id",         default: 0, null: false
-    t.integer "plant_wall_id"
-    t.string  "name"
-    t.string  "category"
-    t.string  "path"
+  create_table "devices", force: true do |t|
+    t.integer  "plant_wall_id"
+    t.string   "name"
+    t.string   "category"
+    t.string   "path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "devices", ["device_id", "gw_id"], name: "index_devices_on_device_id_and_gw_id", using: :btree
 
   create_table "harvest_points", force: true do |t|
     t.integer  "plant_wall_id"
     t.string   "breed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   create_table "plant_walls", force: true do |t|
@@ -41,14 +40,11 @@ ActiveRecord::Schema.define(version: 20141222075107) do
 
   create_table "sense_values", force: true do |t|
     t.integer  "device_id"
-    t.integer  "gw_id"
     t.float    "data",        limit: 24
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "sense_values", ["device_id", "gw_id"], name: "index_sense_values_on_device_id_and_gw_id", using: :btree
 
   create_table "suggestions", force: true do |t|
     t.integer  "plant_wall_id"

@@ -34,9 +34,8 @@ end
 
 class Device < ActiveRecord::Base
   belongs_to :plant_wall
-  has_many :sense_values , :class_name => 'SenseValue' ,:foreign_key => [:device_id, :gw_id],dependent: :destroy
+  has_many :sense_values 
   
-  self.primary_key = [:device_id, :gw_id]
 end
 
 
@@ -48,7 +47,7 @@ end
 
 
 class SenseValue < ActiveRecord::Base
-  belongs_to :device, :foreign_key => [:device_id, :gw_id]
+  belongs_to :device
 end
 
 
@@ -165,23 +164,25 @@ loop do
       walls.each do |wall|
         devices = wall.devices
         devices.each do |device|
-          if device.category == '55' || device.category == '56'|| device.category == '57' || device.category == '58' || device.category =='59' || device.category == '62'
-            val = get_value(device.gw_id, device.device_id)
+          if device.category == '55' || device.category == '56'|| device.category == '57' || device.category == '58' || device.category == '62'
+            #puts gw_id, device.id
+            val = get_value(gw_id,device.id)
+
             msg= suggestion(val, device)
-            SenseValue.create(:data => val, :device_id => device.device_id, :gw_id => device.gw_id)
+            SenseValue.create(:data => val, :device_id => device.id)
             if (count == 30 || count == 60 )
               Suggestion.create(:content => msg, :plant_wall => wall)
             end  
           elsif device.category == '61'
             if (count == 60 )
-              SenseValue.create(:description => get_pic(device.gw_id, device.device_id, wall.id), :device_id => device.device_id, :gw_id => device.gw_id )
+              SenseValue.create(:description => get_pic(gw_id,device.id, wall.id), :device_id => device.id)
             end
           elsif device.category == '60'
             time = Time.new
             if (time.hour == 20)
-              set_attribute(device.gw_id, device.device_id,0)
+              set_attribute(gw_id,device.id,0)
             elsif (time.hour == 8)
-              set_attribute(device.gw_id, device.device_id,1)
+              set_attribute(gw_id,device.id,1)
             end
           end
         end

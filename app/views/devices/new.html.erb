@@ -21,7 +21,7 @@
                   walls = rep;
                   walls.forEach(function (wall) {
                     wall.forEach(function (device) {
-                      ref.push(device.device_id);
+                      ref.push(device.id);
                     })
                   });
                 })
@@ -82,7 +82,7 @@
                   }).done(function(rep) {
                     $thisBtn.closest("div[class^='panel']").fadeOut();
                     $.ajax({
-                    url: encodeURI("http://140.138.150.58/creation?dev_id="+$thisDeviceId+"&gw_id="+$thisGw+"&plant_wall_id="+$thisWall+"&name="+$thisDeviceName+"&catelog="+$thisDeviceCatelog),
+                    url: encodeURI("http://140.138.150.58/creation?dev_id="+$thisDeviceId+"&plant_wall_id="+$thisWall+"&name="+$thisDeviceName+"&catelog="+$thisDeviceCatelog),
                     type: "get",
                     datatype: "text/plain"
                     })                

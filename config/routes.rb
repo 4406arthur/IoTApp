@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   match '/creation', to:'devices#create',  via: 'get'
   match '/logout', to:'swot_users#logout', via: 'get'
   match '/plant_walls/:plant_wall_id/chart' => 'devices#chart', :as => :chart, via: 'get'
-  #match '/plant_walls/:plant_wall_id/streamPath' => 'devices#newPath', :as => :chart, via: 'put'
   match '/plant_walls/:plant_wall_id/pic' => 'devices#pic', :as => :pic, via: 'get'
   match '/plant_walls/:plant_wall_id/cam' => 'devices#cam', :as => :cam, via: 'get'
   match '/plant_walls/:plant_wall_id/dash' => 'devices#dash', :as => :dash, via: 'get'

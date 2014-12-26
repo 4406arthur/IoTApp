@@ -1,3 +1,8 @@
+<% if params[:point] %>
+  <% @point = @wall.harvest_points.find(params[:point]) %>
+<% else %>
+  <% @point = @wall.harvest_points.last %>
+<% end %>
 <div class="row">
     <aside class="col-md-3">
       <section>
@@ -8,13 +13,48 @@
       </section>
     </aside>
     <div class="col-md-8">
-      <h3>Ipcam Capture</h3>
+      <h3>
+        Plant Growth Process
+        <%= link_to("StartNewCycle", new_plant_wall_harvest_point_path(@wall), :class => "glyphicon glyphicon-plus pull-right") %>
+        <br><br><br>
+        <% if @point && @point.status != 1 %>
+          <%= link_to("Harvest", edit_harvest_point_path(@point), :class => "btn btn-danger pull-right") %>
+        <% elsif @point && @point.status == 1 %>
+          Already harvested  
+        <% end %>
+      </h3>
+      <br>
+        <% @wall.harvest_points.each do |breed| %>
+          <%= link_to breed.breed, pic_path(@wall, :point => breed) ,data: { no_turbolink: true }, :class => "btn btn-warning" %>
+        <% end %>
+      <br><br><br>
       <div class="center lead">
         <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
-        <% @cams.each do |cam| %>
-          <% cam.sense_values.each do |image| %>
-          <a class="gallery" href="/assets/<%= image.description %>"><%= image_tag(image.description, :data => { :gallery => "gallery" }, :class => "img-thumbnail" ) %></a>
-          <% end %>
+        <% if @point && @point.status == 1 %>
+         <h3> <%= @point.breed  %>   </h3>
+         <% @cams.each do |cam| %>
+           <% cam.sense_values.where('created_at BETWEEN ? AND ?', @point.created_at, @point.updated_at).each do |image| %>
+
+           <a class="gallery" href="/assets/<%= image.description %>"><%= image_tag(image.description, :data => { :gallery => "gallery" }, :class => "img-thumbnail" ) %></a>
+           <% end %>
+         <% end %>
+
+        <% elsif @point && @point.status != 1 %>
+         <h3> <%= @wall.harvest_points.last.breed %>   </h3>
+         <% @cams.each do |cam| %>
+           <% cam.sense_values.where('created_at >= :startpoint',:startpoint => @wall.harvest_points.last.created_at).each do |image| %>
+           <a class="gallery" href="/assets/<%= image.description %>"><%= image_tag(image.description, :data => { :gallery => "gallery" }, :class => "img-thumbnail" ) %></a>
+           <% end %>
+         <% end %>
+
+        <% else %>
+          <% @cams.each do |cam| %>
+           <% cam.sense_values.each do |image| %>
+           <a class="gallery" href="/assets/<%= image.description %>"><%= image_tag(image.description, :data => { :gallery => "gallery" }, :class => "img-thumbnail" ) %></a>
+           <% end %>
+         <% end %>
+
+
         <% end %>
 
         </div>

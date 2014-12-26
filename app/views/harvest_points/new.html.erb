@@ -1,0 +1,22 @@
+<div class="row">
+    <aside class="col-md-3">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/menu' %>
+      </section>
+    </aside>
+  <div class="col-md-8">
+    <h3> <%= 'Record your harvest' %> </h3>
+    <div class="center lead">
+      <%= form_for [@wall,@point] do |f| %>
+        <%= f.label :"Plant breed" %>
+        <%= f.text_field :breed, :class => "input-xxsmall"%>
+       
+
+        <%= f.submit "Submit", :class => "btn btn-primary" %>
+      <% end %>
+    </div> 
+  </div>
+</div>

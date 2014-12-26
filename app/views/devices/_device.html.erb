@@ -6,7 +6,7 @@
           <%# it for switch cam cmd panel%>
      <%if device.category == '60' || device.category == '73' || device.category == '75'  %>
         <div class="panel-body text-center cmd">   
-          <btn data-device-id=<%=device.device_id%> data-device-gw=<%=device.gw_id%> type=button class="btn btn-default on">
+          <btn data-device-id=<%=device.id%> data-device-gw=<%=device.plant_wall.swot_user.gw_id%> type=button class="btn btn-default on">
                 <i class="fa fa-toggle-on "></i>
 
           </btn>

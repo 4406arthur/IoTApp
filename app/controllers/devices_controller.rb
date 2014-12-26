@@ -1,11 +1,11 @@
 class DevicesController < ApplicationController
   before_action :current_wall, except: [:destroy, :edit, :update]
   def edit
-    @device = Device.find(params[:id].split(','))
+    @device = Device.find(params[:id])
   end
 
   def create
-    Device.create(:device_id => params[:dev_id], :gw_id => params[:gw_id] ,:plant_wall_id => params[:plant_wall_id],:name => params[:name], :category => params[:catelog] )
+    Device.create(:id => params[:dev_id],:plant_wall_id => params[:plant_wall_id],:name => params[:name], :category => params[:catelog] )
     render :nothing => true
   end
   
@@ -15,9 +15,9 @@ class DevicesController < ApplicationController
   end
 
   def update
-    @device = Device.find(params[:id].split(','))
+    @device = Device.find(params[:id])
     if @device.update(device_params)
-      redirect_to plant_wall_devices_path(@wall)
+      redirect_to root_path
     else
       render :edit
     end
@@ -55,8 +55,7 @@ class DevicesController < ApplicationController
 
   def destroy
     
-    
-    @device = Device.find([ params[:id],session[:gw_id] ])
+    @device = Device.find(params[:id])
     @wall = @device.plant_wall
     @device.destroy
 
