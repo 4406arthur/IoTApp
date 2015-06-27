@@ -45,7 +45,10 @@ gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 # Use unicorn as the app server
+
 # gem 'unicorn'
+#god monitor
+gem 'god'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
